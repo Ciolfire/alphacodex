@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="AlphaCodex.featFiltersColumn"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:AlphaCodex"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+  <!-- FEATS LEFT PANEL -->
+  <Grid Name="featFilters" Grid.Column="0" >
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <StackPanel Grid.Row="0"  >
+      <StackPanel.Background>
+        <ImageBrush ImageSource="/AlphaCodex;component/data/pictures/UI/feat_back.jpg"/>
+      </StackPanel.Background>
+      <Label Content="Search" FontFamily="data/Celestia Antiqua.ttf#Celestia Antiqua" FontSize="15" FontWeight="SemiBold" Margin="0" HorizontalAlignment="Center"/>
+      <TextBox Name="searchFeat" FontFamily="data/Celestia Antiqua.ttf#Celestia Antiqua" FontSize="24"
+               Margin="2" Height="26" ToolTip="Use this box to search feats" Background="#BFFFFFFF" BorderBrush="Black" BorderThickness="1,1,0,0" SelectionBrush="#FF59422B"
+               TextChanged="searchFeat_TextChanged"/>
+    </StackPanel>
+
+    <!-- LIST OF TYPES -->
+    <TextBlock Grid.Row="1" Margin="0" Height="20" VerticalAlignment="Top"
+               Text="Type" FontFamily="data/Celestia Antiqua.ttf#Celestia Antiqua" FontSize="15" FontWeight="SemiBold" TextAlignment="Center">
+      <TextBlock.Background>
+        <ImageBrush ImageSource="/AlphaCodex;component/data/pictures/UI/feat_back.jpg"/>
+      </TextBlock.Background>
+    </TextBlock>
+    <ListBox Name="typeListBox" ItemsSource="{Binding Path=featTypesList}"
+             Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,20,0,0" MaxHeight="225" Background="#FF303030">
+      <ListBox.ItemsPanel>
+        <ItemsPanelTemplate>
+          <WrapPanel Orientation="Horizontal"/>
+        </ItemsPanelTemplate>
+      </ListBox.ItemsPanel>
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <ListBoxItem ToolTip="Use right click to select/deselect types" Padding="0" BorderBrush="Black" Background="Black">
+            <StackPanel Height="70" Width="150">
+              <StackPanel.Background>
+                <ImageBrush ImageSource="data/pictures/UI/feat_back.jpg"/>
+              </StackPanel.Background>
+              <Grid>
+                <Image Source="{Binding Path=picture}" Width="50" Height="50" Margin="0"/>
+                <Image Tag="{Binding Path=id}" Opacity="{Binding Path=disabled}"
+                       Cursor="Hand" ToolTip="{Binding Path=info}" Width="50" Height="50" Source="data/pictures/UI/deactivate2.png" Margin="0"
+                       MouseDown="type_MouseDown"/>
+              </Grid>
+              <TextBlock Text="{Binding Path=name}" FontSize="16" FontFamily="data/Celestia Antiqua.ttf#Celestia Antiqua" TextAlignment="Center" Margin="1"/>
+            </StackPanel>
+          </ListBoxItem>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+
+    <!-- LIST OF CATEGORIES -->
+    <TextBlock Text="Categories" TextAlignment="Center" FontFamily="data/Celestia Antiqua.ttf#Celestia Antiqua" FontSize="15" FontWeight="SemiBold" Grid.Row="2" VerticalAlignment="Top" Margin="0" Height="20">
+      <TextBlock.Background>
+        <ImageBrush ImageSource="/AlphaCodex;component/data/pictures/UI/feat_back.jpg"/>
+      </TextBlock.Background>
+    </TextBlock>
+    <ListBox Name="subtypeListBox" ItemsSource="{Binding Path=featSubtypesList}" Grid.Row="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,20,0,0" Background="#FF303030">
+      <ListBox.ItemsPanel>
+        <ItemsPanelTemplate>
+          <WrapPanel Orientation="Horizontal"/>
+        </ItemsPanelTemplate>
+      </ListBox.ItemsPanel>
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <ListBoxItem Padding="0" BorderBrush="Black" Background="Black">
+            <StackPanel Height="70" Width="150">
+              <StackPanel.Background>
+                <ImageBrush ImageSource="data/pictures/UI/feat_back.jpg"/>
+              </StackPanel.Background>
+              <Grid>
+                <Image Source="{Binding Path=picture}" Width="50" Height="50" Margin="0"/>
+                <Image Source="data/pictures/UI/deactivate.png" Tag="{Binding Path=id}" Opacity="{Binding Path=disabled}"
+                       Cursor="Hand" ToolTip="Use right click to select/deselect categories" Width="50" Height="50" Margin="0"
+                       MouseDown="category_MouseDown"/>
+              </Grid>
+              <TextBlock Text="{Binding Path=name}" FontSize="16" FontFamily="data/Celestia Antiqua.ttf#Celestia Antiqua" TextAlignment="Center" Margin="1"/>
+            </StackPanel>
+          </ListBoxItem>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+  </Grid>
+</UserControl>
