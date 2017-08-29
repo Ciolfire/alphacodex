@@ -1,0 +1,8 @@
+0.0.1	-	base UI
+0.0.2	-	DB implementation
+0.0.3	-	basic class recovery
+0.1.0	-	UI improvement
+0.1.1	-	Feats Implementation
+0.1.2	-	SRD Feats added to the DB
+0.1.3	-	New Feats added (Dragonlance Campaign setting, Miniature Handbook, BoED, Underdark, Draconomicon)
+0.1.4	-	Spells Implementation
