@@ -137,7 +137,7 @@ namespace AlphaCodex
             foreach (Feat feat in Feats)
             {
                 // Search the prerequisite table for feats(children) that have the current feat as parent
-                var children = FeatPrerequisites.Where(prerequisite => prerequisite.ParentId == feat.Id);
+                List<FeatPrerequisite> children = FeatPrerequisites.Where(prerequisite => prerequisite.ParentId == feat.Id).ToList();
                 if (children != null)
                 {
                     childrenId.Clear();

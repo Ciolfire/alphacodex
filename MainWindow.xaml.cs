@@ -16,7 +16,7 @@ namespace AlphaCodex
     {
         public static Class DefaultClass { get; set; }
         public static Feat DefaultFeat {get; set;}
-        public static Player player { get; set; }
+        public static Player Player { get; set; }
         public static List<Alignment> Alignments { get; set; }
         public static List<Skill> Skills { get; set; }
         public static List<Ability> Abilities { get; set; }
@@ -28,7 +28,7 @@ namespace AlphaCodex
             DefaultFeat = new Feat();
             InitializeData();
             InitializeComponent();
-            if (player.Name == string.Empty)
+            if (Player.Name == string.Empty)
             {
                 menu.SelectedIndex = 0;
                 Welcome.Visibility = Visibility.Visible;
@@ -45,49 +45,6 @@ namespace AlphaCodex
 
             /**/
             //refreshClassList();
-
-            List<string> scores = new List<string>
-            {
-                "11",
-                "18",
-                "9",
-                "16",
-                "13",
-                "18"
-            };
-
-            // getAbilities(List<string>scores)
-            Dictionary<Ability, short> abilities = new Dictionary<Ability, short>();
-            short count = 1;
-            foreach (string score in scores)
-            {
-                abilities.Add(MainWindow.Abilities.Single(ability => ability.id == count), short.Parse(score));
-                count++;
-            }
-
-            //string name = "Jade";
-            //abilities = getAbilities();
-            //Race race = ;
-            /*Class classC = classes.Single(item => item.name == "Rogue");
-            Character jade = new Character(name, abilities, classC);
-            System.Diagnostics.Debug.WriteLine("character test");
-            string message;
-            message = "name: " + jade.name;
-            message += "\nclasses:";
-            jade.classes.Add(classes.Single(item => item.name == "Sorcerer"), 2);
-            jade.classes[classes.Single(item => item.name == "Rogue")] = 4;
-            foreach (KeyValuePair<Class, short> classe in jade.classes)
-            {
-                message += " " + classe.Key.name + " level " + classe.Value;
-            }
-            foreach (KeyValuePair<Ability, short> score in jade.abilities)
-            {
-                message += "\n" + score.Key.name + " " + score.Value;
-            }
-            jade.feats.Add(feats.Single(item => item.name == "Two-Weapon Fighting"), 1);
-            jade.feats.Add(feats.Single(item => item.name == "Weapon Focus"), 3);*/
-            //MessageBox.Show(message);
-
         }
 
         private int InitializeData()
@@ -204,27 +161,27 @@ namespace AlphaCodex
 
         #endregion
 
+        // To be moved later
         // Used to create the prerequisite of the actual feats
         private void CreatePrerequisiteBtn_Click(object sender, RoutedEventArgs e)
         {
             // prepare the data
             // the list of feat, ordered to avoid issues
             var linqFeats = Feats.OrderByDescending(x => x.Name.Length);
-            //MessageBox.Show(linqFeats.First().name);
-            System.Diagnostics.Debug.WriteLine("[CREATING PREREQUISITE] longest feat: " + linqFeats.First().Name);
-            System.Diagnostics.Debug.WriteLine("[CREATING PREREQUISITE] shortest feat: " + linqFeats.Last().Name);
-            // Create the main loop
+            // 
+            System.Diagnostics.Debug.WriteLine("[CREATING PREREQUISITE] start");
             foreach (Feat feat in Feats)
             {
                 // for each feat in the least, check if there are feat in the prerequisite
                 generateFromFeats(feat, linqFeats);
                 // the idea is to check every type of prerequisite, feats, race, skill, and so on
+                // Only feat are implemented for now
             }
             System.Diagnostics.Debug.WriteLine("[CREATING PREREQUISITE] Done");
-            // reload feats from database
-            GetFeats();
-            GetFeatsChildrens();
-            GetFeatsPrerequisites();
+
+            // [IMPROVE] Should reload from database, to avoid duplicate entries etc.
+            // Or maybe not, this is a dev feature only, maybe force quit application once completed.
+            // [BUG] Still feat are observable but don't update as intended, to be corrected.
         }
 
         private void AddSpellPanel_Loaded(object sender, RoutedEventArgs e)
@@ -232,6 +189,7 @@ namespace AlphaCodex
             RegisterSpell();
         }
 
+        // To be moved later
         private void WelcomeTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -244,9 +202,10 @@ namespace AlphaCodex
             }
         }
 
+        // To be moved later
         private void WelcomeButton_Click(object sender, RoutedEventArgs e)
         {
-            player.SetName(WelcomeTextBox.Text);
+            Player.SetName(WelcomeTextBox.Text);
             menu.IsEnabled = true;
             Welcome.Visibility = Visibility.Collapsed;
         }

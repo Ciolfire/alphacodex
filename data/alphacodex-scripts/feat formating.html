@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Feat Formating</title>
+	<SCRIPT LANGUAGE="JavaScript">
+		function featResults (form) {
+			var title = toTitleCase(form.title.value);
+			document.getElementById("title").innerHTML = title;
+			//form.title.value = "";
+
+			var description = cleanText(form.description.value, "description");
+			var prerequisite = cleanText(form.prerequisite.value, "prerequisite");
+			var benefit = cleanText(form.benefit.value, "benefit");
+			var normal = cleanText(form.normal.value, "normal");
+			var special = cleanText(form.special.value, "special");
+			var note = cleanText(form.note.value, "note");
+
+			var table = form.table.value;
+			table = table.replace(/\n/g, "|")
+			document.getElementById("table").innerHTML = table;
+
+			form.reset(); 
+		}
+
+		function cleanText(str, type)
+		{
+			// Clean the lines
+			str = str.replace(/-\n/g, "-").replace(/ \n/g, " ").replace(/\n /g, " ").replace(/\n/g, " ");
+			// clean the words
+			str = str
+			.replace(/fi /g, "fi")
+			.replace(/fl /g, "fl")
+			.replace(/Fi /g, "Fi")
+			.replace(/Fl /g, "Fl")
+			// .replace(/fl y/g, " fly")
+			// .replace(/f light/g, "flight")
+			// .replace(/f ire/g, "fire")
+			// .replace(/fi re/g, "fire")
+			// .replace(/fi ght/g, "fight")
+			// .replace(/F ighter/g, "Fighter")
+			// .replace(/f lame/g, "flame")
+			// .replace(/fl ame/g, "flame")
+			// .replace(/fl aw/g, "flaw")
+			.replace(/Refl ex/g, "Reflex")
+			.replace(/refl ex/g, "reflex")
+			.replace(/benefi t/g, "benefit")
+			.replace(/modifi e/g, "modifie")
+			// .replace(/fi ve /g, "five ")
+			.replace(/diffi cult/g, "difficult")
+			.replace(/battlefi eld/g, "battlefield")
+			// .replace(/fi rst/g, "first")
+			// .replace(/fl ow/g, "flow")
+			// .replace(/fl at/g, "flat")
+			// .replace(/fi ll/g, "fill")
+			.replace(/fortifi ed/g, "fortified")
+			// .replace(/fl ick/g, "flick")
+			.replace(/Profi ciency/g, "Proficiency")
+			.replace(/infl ict/g, "inflict");
+
+			document.getElementById(type).innerHTML = str;
+		}
+
+		function toTitleCase(str)
+		{
+			return str.replace(/[\w’']*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}).replace(/ To /g, " to ").replace(/ The /g, " the ").replace(/ Of /g, " of ").replace(/ And /g, " and ");
+		}
+</SCRIPT>
+</head>
+<body>
+<div>
+	<p id="title"></p> 
+	<p id="description"></p>
+	<p id="prerequisite"></p>
+	<p id="benefit"></p>
+	<p id="normal"></p>
+	<p id="special"></p>
+	<p id="note"></p>
+	<p id="table"></p>
+</div>
+<form NAME="feat" ACTION="" METHOD="GET">
+	<input type="button" name="submit" value="go" onClick="featResults(this.form)">
+	<input type="text" name="title"><br>
+	<label>description</label><label style="margin-left: 385px;">prerequisite</label><br>
+	<textarea name="description" cols="55" rows="10"></textarea>
+	<textarea name="prerequisite" cols="55" rows="10"></textarea>
+	<br>Benefit<label style="margin-left: 408px;">normal</label><br>
+	<textarea name="benefit" cols="55" rows="10"></textarea>
+	<textarea name="normal" cols="55" rows="10"></textarea><br>
+	Special<label style="margin-left: 408px;">note</label><br>
+	<textarea name="special" cols="55" rows="10"></textarea>
+	<textarea name="note" cols="55" rows="10"></textarea><br>
+	Table
+	<textarea name="table" cols="108" rows="5"></textarea>
+	</form>
+</form>
+</body>
+</html>

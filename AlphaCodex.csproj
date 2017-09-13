@@ -165,9 +165,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="panels\addFeatPanel.cs" />
-    <Compile Include="panels\addSpellPanel.cs" />
-    <Compile Include="panels\ClassPanel.cs" />
+    <Compile Include="panels_temp_folder\addFeatPanel.cs" />
+    <Compile Include="panels_temp_folder\addSpellPanel.cs" />
     <Compile Include="classes\domain.cs" />
     <Compile Include="PanelFeats\FeatModel.cs" />
     <Compile Include="PanelFeats\classes\FeatType.cs" />
@@ -175,7 +174,7 @@
     <Compile Include="classes\spellSchool.cs" />
     <Compile Include="classes\Spellcaster.cs" />
     <Compile Include="classes\Spell.cs" />
-    <Compile Include="panels\SpellPanel.cs" />
+    <Compile Include="panels_temp_folder\SpellPanel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -501,15 +500,6 @@
     <Resource Include="data\pictures\UI\feats\type\recitations.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="search_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="search_off.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="search_on.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="data\pictures\UI\search_off.png" />
     <Resource Include="data\pictures\UI\search_on.png" />
   </ItemGroup>
@@ -518,6 +508,22 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="data\pictures\UI\feats\subtype\maneuver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="data\pictures\UI\feats\type\reserve.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="data\pictures\UI\feats\type\deviltouched.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="data\pictures\UI\feats\type\luck.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="data\pictures\UI\feats\type\ambush.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="data\pictures\UI\feats\type\domain.png" />
+    <Resource Include="data\pictures\UI\feats\type\dreamtouched.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\System.Data.SQLite.Core.1.0.99.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('packages\System.Data.SQLite.Core.1.0.99.0\build\net451\System.Data.SQLite.Core.targets')" />

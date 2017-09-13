@@ -73,7 +73,8 @@ namespace AlphaCodex
             }
         }
 
-        public static string Path { get => path; set => path = value; }
+        public static string Path { get { return path; } set { path = value; } }
+        //public static string Path { get => path; set => path = value; }
 
         #endregion
 
@@ -239,7 +240,7 @@ namespace AlphaCodex
                 SQLiteDataReader reader = command.ExecuteReader();
 
                 reader.Read();
-                player = new Player(reader);
+                Player = new Player(reader);
                 reader.Close();
                 connDB.Close();
             }

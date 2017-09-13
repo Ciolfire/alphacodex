@@ -180,7 +180,7 @@
                         <Image Name="featStatut" Source="/AlphaCodex;component/data/pictures/UI/old.png" Height="160" Width="158"/>
                         <TextBlock Name="featTitle" Margin="10,0,60,0" FontFamily="/AlphaCodex;component/data/#Celestia Antiqua" FontSize="40" TextAlignment="Center" TextWrapping="WrapWithOverflow" FontWeight="Bold" Foreground="#FF003364"/>
                         <Grid>
-                            <TextBlock Name="FeatDescription" Margin="10,0,205,10" VerticalAlignment="Center" FontFamily="Buxton Sketch" FontSize="14" TextWrapping="Wrap" Foreground="#FF322720" />
+                            <TextBlock Name="FeatDescription" Margin="10,0,210,10" VerticalAlignment="Center" FontFamily="Buxton Sketch" FontSize="14" TextWrapping="Wrap" Foreground="#FF322720" />
                             <Image Name="FeatSubtype" Source="{Binding Path=Subtype.Picture}" ToolTip="{Binding Path=Subtype.Name}" HorizontalAlignment="right" Height="150" Margin="0,0,50,0"/>
                             <Image Name="FeatType" Source="{Binding Path=TypePicture}" HorizontalAlignment="Right" Height="120" Margin="0,150,0,0"/>
                         </Grid>

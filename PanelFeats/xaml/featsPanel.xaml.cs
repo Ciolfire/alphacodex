@@ -7,6 +7,7 @@ using System.Windows.Documents;
 using System.Text.RegularExpressions;
 using System;
 using System.Windows.Media;
+using System.Collections.Generic;
 
 namespace AlphaCodex
 {
@@ -46,7 +47,7 @@ namespace AlphaCodex
                 searchedField = GetSearchedField(feat);
 
                 if (feat.Current
-                    && searchedField.Contains(SearchFeat.Text.ToLower())
+                    && searchedField.IndexOf(SearchFeat.Text, StringComparison.OrdinalIgnoreCase) > -1
                     && SubtypeIsActive(feat)
                     && TypeIsActive(feat, extraType)
                     )
@@ -95,13 +96,13 @@ namespace AlphaCodex
             switch (currentMode)
             {
                 case SearchMode.NAME:
-                    return feat.Name.ToLower();
+                    return feat.Name;
                 case SearchMode.BENEFIT:
-                        return feat.Benefit.ToLower();
+                        return feat.Benefit;
                 case SearchMode.PREREQUISITE:
-                    return feat.SimplePrerequisite.ToLower();
+                    return feat.SimplePrerequisite;
                 default:
-                    return feat.Name.ToLower();
+                    return feat.Name;
             }
         }
 
@@ -143,22 +144,33 @@ namespace AlphaCodex
         private void GenerateChildrens(Feat currentFeat)
         {
             Feat candidate;
+            List<Feat> children = new List<Feat>();
+
             FeatRequiredFor.Inlines.Clear();
+            // Fetch the children feats that are current
             foreach (int featId in currentFeat.Children)
             {
-                Hyperlink link = new Hyperlink();
                 candidate = MainWindow.Feats.Single(feat => feat.Id == featId);
-                if (candidate.Current == true) {
-                    if (FeatRequiredFor.Inlines.Count != 0)
-                    {
-                        FeatRequiredFor.Inlines.Add(", ");
-                    }
-                    link.Inlines.Add(candidate.Name);
-                    link.TargetName = featId.ToString();
-                    link.Tag = "feat";
-                    link.Click += Link_Click;
-                    FeatRequiredFor.Inlines.Add(link);
+                if (candidate.Current == true)
+                {
+                    children.Add(candidate);
                 }
+            }
+            // Sort them by name
+            children = children.OrderBy(c => c.Name).ToList();
+            // Finally create the links
+            foreach (Feat child in children)
+            {
+                Hyperlink link = new Hyperlink();
+                if (FeatRequiredFor.Inlines.Count != 0)
+                {
+                    FeatRequiredFor.Inlines.Add(", ");
+                }
+                link.Inlines.Add(child.Name);
+                link.TargetName = child.Id.ToString();
+                link.Tag = "feat";
+                link.Click += Link_Click;
+                FeatRequiredFor.Inlines.Add(link);
             }
             if (currentFeat.Children.Any())
                 FeatRequiredFor.Inlines.Add(".");
