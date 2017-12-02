@@ -1,0 +1,114 @@
+﻿<UserControl x:Class="AlphaCodex.Views.FeatView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:tools="clr-namespace:AlphaCodex.Tools"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style BasedOn="{StaticResource links}" TargetType="{x:Type Hyperlink}"/>
+    </UserControl.Resources>
+    <Grid DataContext="{Binding Path=SelectedFeat, NotifyOnTargetUpdated=True}"
+          TargetUpdated="FormatBindingData">
+        <Border BorderThickness="2"
+                Background="#E5FFF1B4" BorderBrush="#FF150D09"
+                VerticalAlignment="Top" HorizontalAlignment="Center">
+            <!--<Grid Name="FeatOptionsGrid" Margin="0,0,0,0" HorizontalAlignment="Right" Panel.ZIndex="2" VerticalAlignment="Top">
+                        <Image Source="/AlphaCodex;component/data/pictures/UI/setting.png" Height="50" Width="50" Name="FeatOptions" VerticalAlignment="Top" HorizontalAlignment="Right" Cursor="Hand" MouseEnter="FeatOptions_MouseEnter"/>
+                        <Border  MouseLeave="FeatOptions_MouseLeave" Name="FeatOptionsBlock" BorderBrush="#FF760000" CornerRadius="2" BorderThickness="2" Cursor="Hand" Panel.ZIndex="1" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed" Margin="0,5,5,0" Background="#BFFFEA91">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Name="FeatOptionsFavoriteImg" Source="/AlphaCodex;component/data/pictures/UI/favorite_off.png" HorizontalAlignment="Left" Height="30" Margin="5,2,0,2"/>
+                                    <TextBlock Name="FeatOptionsFavoriteText" Text="Favorite" VerticalAlignment="Center" Padding="5" Foreground="#FF003364"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/AlphaCodex;component/data/pictures/UI/book.png" HorizontalAlignment="Left" Height="30" Margin="5,2,0,2"/>
+                                    <TextBlock Text="{Binding Path=Book.Name}" VerticalAlignment="Center" Padding="5" Foreground="#FF003364"/>
+                                    <TextBlock Text="{Binding Path=Page}" VerticalAlignment="Center" Padding="5" Foreground="#FF003364"/>
+                                </StackPanel>
+                                <StackPanel Tag="{Binding Path=Id}" Orientation="Horizontal" MouseLeftButtonDown="StackPanelCopyT_MouseLeftButtonDown">
+                                    <Image Source="/AlphaCodex;component/data/pictures/UI/copy_text.png" HorizontalAlignment="Left" Height="30" Margin="5,2,0,2"/>
+                                    <TextBlock Text="Copy as text" VerticalAlignment="Center" Padding="5" Foreground="#FF003364"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" MouseLeftButtonDown="StackPanelCopyP_MouseLeftButtonDown">
+                                    <Image Source="/AlphaCodex;component/data/pictures/UI/copy_img.png" HorizontalAlignment="Left" Height="30" Margin="5,2,0,2"/>
+                                    <TextBlock Text="Copy as picture" VerticalAlignment="Center" Padding="5" Foreground="#FF003364"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </Grid>-->
+            <StackPanel Margin="5">
+                <Image Visibility="{Binding Path=IsCurrent, Converter={tools:InvertedBooleanToVisibilityConverter}}"
+                       Source="/AlphaCodex;component/data/pictures/UI/old.png"
+                       Height="160" Width="158"/>
+                <TextBlock Text="{Binding Path=DisplayName}" TextAlignment="Center" TextWrapping="WrapWithOverflow"
+                           Foreground="{StaticResource TitleColor}"
+                           FontFamily="{StaticResource MainFont}" FontSize="40" FontWeight="Bold"/>
+                <DockPanel>
+                    <Grid DockPanel.Dock="Right">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="70"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="45"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"
+                               Source="{Binding Path=Subtype.Picture}"
+                               ToolTip="{Binding Path=Subtype.Name}"/>
+                        <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2"
+                               Source="{Binding Path=Type.Picture}"/>
+                    </Grid>
+                    <TextBlock DockPanel.Dock="Right"
+                               Text="{Binding Path=Description}" FontFamily="{StaticResource SecondaryFont}" FontSize="14" TextWrapping="Wrap"
+                               Foreground="{StaticResource TextColor}"
+                               VerticalAlignment="Center"/>
+                </DockPanel>
+                <StackPanel Visibility="{Binding Path=PrerequisitesString, Converter={tools:StringToVisibilityConverter}}" Margin="10,0,10,10">
+                    <TextBlock Text="Prerequisite:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
+                    <TextBlock Name="Prerequisite" FontSize="18" TextWrapping="Wrap">
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Margin="10,0,10,10">
+                    <TextBlock Text="Benefit:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
+                    <TextBlock x:Name="Benefit" Foreground="{StaticResource TextColor}" FontSize="18" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel Visibility="{Binding Path=Normal, Converter={tools:StringToVisibilityConverter}}" Margin="10,0,10,10">
+                    <TextBlock Text="Normal:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
+                    <TextBlock Name="Normal" Foreground="{StaticResource TextColor}" FontSize="18" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel Visibility="{Binding Path=Special, Converter={tools:StringToVisibilityConverter}}" Margin="10,0,10,10">
+                    <TextBlock Text="Special:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
+                    <TextBlock Name="Special" Foreground="{StaticResource TextColor}" FontSize="18" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel Visibility="{Binding Path=Note, Converter={tools:StringToVisibilityConverter}}" Margin="10,0,10,10">
+                    <TextBlock Text="Note:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
+                    <TextBlock Name="Note" Foreground="{StaticResource TextColor}" FontSize="18" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel Visibility="{Binding Path=Children, Converter={tools:CollectionToVisibilityConverter}}" Margin="10,0,10,10">
+                    <TextBlock Text="Required for:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
+                    <TextBlock x:Name="Children" Foreground="{StaticResource TextColor}" FontFamily="{StaticResource MainFont}" FontSize="18" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel Visibility="{Binding Path=History, Converter={tools:CollectionToVisibilityConverter}}" Margin="10,0,10,10">
+                    <TextBlock Text="Previously appeared in:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
+                    <TextBlock x:Name="History" FontFamily="{StaticResource MainFont}" FontSize="18" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel Visibility="{Binding Path=IsCurrent, Converter={tools:InvertedBooleanToVisibilityConverter}}" Margin="10,0,10,10">
+                    <TextBlock Text="Revised in:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
+                    <TextBlock x:Name="CurrentFeat" FontFamily="{StaticResource MainFont}" FontSize="18" TextWrapping="Wrap"/>
+                </StackPanel>
+                <TextBlock FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold" Foreground="{StaticResource TextColor}" HorizontalAlignment="Right">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0} page {1}">
+                            <Binding Path="Book.Name"/>
+                            <Binding Path="Page"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

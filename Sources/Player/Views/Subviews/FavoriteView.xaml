@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="AlphaCodex.Views.FavoriteView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AlphaCodex.Views"
+             mc:Ignorable="d">
+    <StackPanel Orientation="Horizontal"
+                Cursor="Hand">
+        <TextBlock Grid.Column="0" 
+                   Width="168"
+                   Text="{Binding Path=DisplayName}" TextTrimming="CharacterEllipsis"
+                   Foreground="{DynamicResource TitleColor}"
+                   ToolTip="{Binding Path=DisplayName}"/>
+        <Button Width="20" Background="#FF650A0A">-</Button>
+    </StackPanel>
+</UserControl>

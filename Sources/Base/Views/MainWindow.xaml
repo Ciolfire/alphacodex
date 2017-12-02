@@ -1,0 +1,95 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Properties="clr-namespace:AlphaCodex.Properties"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:AlphaCodex"
+    xmlns:vw="clr-namespace:AlphaCodex.Views"
+    mc:Ignorable="d" x:Name="Main_Window" x:Class="AlphaCodex.MainWindow"
+    Title="Alpha Codex" Width="1360" Height="768" WindowStartupLocation="CenterScreen" MinHeight="768" >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/AlphaCodex;component/CodexDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <TabControl x:Name="menu" Style="{DynamicResource TabControlStyleMain}">
+            <TabItem Header="test" Style="{DynamicResource TabItemStyleMain}">
+            </TabItem>
+            <TabItem Header="Feats" Style="{DynamicResource TabItemStyleMain}">
+                <vw:FeatPanelView DataContext="{Binding Path=FeatsVM}"/>
+            </TabItem>
+            <TabItem Header="{Binding Path=PlayerVM.Player.Name}" Style="{DynamicResource TabItemStyleMain}">
+                <vw:PlayerPanelView DataContext="{Binding Path=PlayerVM}"/>
+            </TabItem>
+        </TabControl>
+        <!--<Border x:Name="Welcome" Panel.ZIndex="1" BorderBrush="#FF392F21" BorderThickness="5" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
+            <DockPanel Height="150" Width="300">
+                <Label FontFamily="/AlphaCodex;component/data/#Celestia Antiqua" FontSize="30" Height="50" DockPanel.Dock="Top" Content="Please choose a name" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#7FF6E4BC"/>
+                <TextBox x:Name="WelcomeTextBox" TextChanged="WelcomeTextBox_TextChanged" FontFamily="/AlphaCodex;component/data/#Celestia Antiqua" FontSize="30" Height="50" DockPanel.Dock="Top" Background="#7FD3B182" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <Button x:Name="WelcomeButton" Click="WelcomeButton_Click" IsEnabled="False" FontFamily="/AlphaCodex;component/data/#Celestia Antiqua" FontSize="30" Height="50" DockPanel.Dock="Bottom" Content="Continue" Background="#BF473329" VerticalContentAlignment="Center" Foreground="#FF8B8B8B"/>
+            </DockPanel>
+        </Border>-->
+
+        <!--<TabControl x:Name="menu" Height="auto" Width="auto" SelectedIndex="3" Style="{DynamicResource TabControlStyleMain}">
+            <TabItem x:Name="homePanel" Header="Home" Style="{DynamicResource TabItemStyleMain}">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FF211B12" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="data/pictures/UI/home/background.jpg"/>
+                    </Grid.Background>
+                    --><!--<Border Margin="10" BorderBrush="#FF4E2400" BorderThickness="2">
+                        <ItemsControl x:Name="GroupsBox" Background="#3FBCA253" HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel IsItemsHost="True" Orientation="Horizontal" Width="700"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="2" BorderBrush="#FF5F0303"  Width="300" Margin="5">
+                                        <StackPanel Orientation="Vertical">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Width="200" Text="{Binding Name}" Foreground="#FFF1EBB9" Background="#FF3A0F0F"/>
+                                                <Rectangle Width="100" HorizontalAlignment="Right" Fill="#FF0D004B"/>
+                                            </StackPanel>
+                                            <ListBox ItemsSource="{Binding Favorites}" HorizontalAlignment="Stretch">
+                                                <ListBox.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel x:Name="stackPanel" Background="{x:Null}">
+                                                            -->
+                    <!--<TextBlock Text="{Binding Name}" FontSize="16" FontFamily="/AlphaCodex;component/data/#Celestia Antiqua" TextAlignment="Center" Foreground="#FF003364"/>-->
+                    <!--
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </ListBox.ItemTemplate>
+                                            </ListBox>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Border>--><!--
+
+                </Grid>
+            </TabItem>
+            --><!--<TabItem x:Name="ClassesPanel" Header="Classes" Initialized="ClassesPanel_Initialized" Style="{DynamicResource TabItemStyleMain}">
+                <local:ClassesPanel/>
+            </TabItem>-->
+            <!--<TabItem x:Name="FeatTab" Header="Feats" Style="{DynamicResource TabItemStyleMain}">
+                <local:FeatPanel/>
+            </TabItem>-->
+            <!--<TabItem x:Name="ajouts"  Header="Ajouts" Initialized="AddFeatsPanel_Initialized" Style="{DynamicResource TabItemStyleMain}">
+                <Button x:Name="createPrerequisiteBtn" Content="Generate feats prerequisites" HorizontalAlignment="Left" VerticalAlignment="Top" Click="CreatePrerequisiteBtn_Click"/>
+            </TabItem>--><!--
+        </TabControl>-->
+    </Grid>
+</Window>

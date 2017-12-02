@@ -92,6 +92,8 @@
       <HintPath>packages\System.Data.SQLite.Linq.1.0.99.0\lib\net451\System.Data.SQLite.Linq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -110,35 +112,132 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="classes\Alignment.cs" />
-    <Compile Include="classes\Ability.cs" />
-    <Compile Include="classes\Book.cs" />
-    <Compile Include="classes\CharAbility.cs" />
-    <Compile Include="classes\Character.cs" />
-    <Compile Include="classes\CharSkill.cs" />
-    <Compile Include="classes\Column.cs" />
-    <Compile Include="classes\Skill.cs" />
-    <Compile Include="PanelClasses\classModel.cs" />
-    <Compile Include="PanelClasses\classes\Class.cs" />
-    <Compile Include="PanelFeats\classes\FeatPrerequisite.cs" />
-    <Compile Include="PanelFeats\xaml\featsPanel.xaml.cs">
+    <Compile Include="Sources\Player\Views\Subviews\FavoriteGroups.xaml.cs">
+      <DependentUpon>FavoriteGroups.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sources\Player\Views\Subviews\FavoriteGroup.xaml.cs">
+      <DependentUpon>FavoriteGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="old\classes\Alignment.cs" />
+    <Compile Include="old\classes\Ability.cs" />
+    <Compile Include="Sources\Base\ViewModels\MainViewModel.cs" />
+    <Compile Include="Sources\Book\Data\DatabaseAccess.cs" />
+    <Compile Include="Sources\Book\ViewModels\BookViewModel.cs" />
+    <Compile Include="Sources\Player\ViewModels\Subviewmodels\PlayerViewModel.cs" />
+    <Compile Include="Sources\Feats\Views\Subviews\BooksViewModel.xaml.cs">
+      <DependentUpon>BooksViewModel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sources\Feats\Data\DatabaseAccess.cs" />
+    <Compile Include="Sources\Feats\ViewModels\Subviewmodels\FeatSubtypeViewModel.cs" />
+    <Compile Include="Sources\Feats\ViewModels\Subviewmodels\FeatTypeViewModel.cs" />
+    <Compile Include="Sources\Feats\Views\Subviews\FeatListItemView.xaml.cs">
+      <DependentUpon>FeatListItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sources\Feats\Views\FeatPanelView.xaml.cs">
+      <DependentUpon>FeatPanelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sources\Feats\Views\Subviews\FeatSubtypesView.xaml.cs">
+      <DependentUpon>FeatSubtypesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sources\Feats\Views\Subviews\FeatView.xaml.cs">
+      <DependentUpon>FeatView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sources\Feats\Views\Subviews\FeatTypesView.xaml.cs">
+      <DependentUpon>FeatTypesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sources\Book\Models\Book.cs" />
+    <Compile Include="old\classes\CharAbility.cs" />
+    <Compile Include="old\classes\Character.cs" />
+    <Compile Include="old\classes\CharSkill.cs" />
+    <Compile Include="Sources\Base\Models\Column.cs" />
+    <Compile Include="old\classes\Skill.cs" />
+    <Compile Include="old\PanelClasses\classModel.cs" />
+    <Compile Include="old\PanelClasses\classes\Class.cs" />
+    <Compile Include="Sources\Base\Data\DatabaseAccess.cs" />
+    <Compile Include="Sources\Base\Models\Link.cs" />
+    <Compile Include="old\PanelFeats\xaml\featsPanel.xaml.cs">
       <DependentUpon>featsPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PanelMain\Player.cs" />
-    <Compile Include="ViewModel.cs" />
+    <Compile Include="Sources\Player\Models\Favorite.cs" />
+    <Compile Include="Sources\Player\Models\FavoriteGroup.cs" />
+    <Compile Include="Sources\Feats\Models\FeatRepository.cs" />
+    <Compile Include="Sources\Base\Models\MainRepository.cs" />
+    <Compile Include="Sources\Player\Models\Player.cs" />
+    <Compile Include="Sources\Player\Data\DatabaseAccess.cs" />
+    <Compile Include="Sources\Player\Models\PlayerRepository.cs" />
+    <Compile Include="Sources\Player\ViewModels\Subviewmodels\FavoriteGroupViewModel.cs" />
+    <Compile Include="Sources\Player\ViewModels\Subviewmodels\FavoriteViewModel.cs" />
+    <Compile Include="Sources\Player\ViewModels\PlayerPanelViewModel.cs" />
+    <Compile Include="Sources\Player\Views\PlayerPanelView.xaml.cs">
+      <DependentUpon>PlayerPanelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sources\Player\Views\Subviews\FavoriteView.xaml.cs">
+      <DependentUpon>FavoriteView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sources\Tools\Converters\InvertedBooleanToVisibilityConverter.cs" />
+    <Compile Include="Sources\Tools\Converters\FeatSearchToBoolConverter.cs" />
+    <Compile Include="Sources\Tools\Converters\CollectionToVisibilityConverter.cs" />
+    <Compile Include="Sources\Tools\JadeTools.cs" />
+    <Compile Include="Sources\Feats\ViewModels\Subviewmodels\FeatViewModel.cs" />
+    <Compile Include="Sources\Tools\Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Sources\Tools\Converters\StringToVisibilityConverter.cs" />
+    <Compile Include="Sources\Feats\ViewModels\FeatPanelViewModel.cs" />
+    <Compile Include="Sources\Tools\regions.cs" />
+    <Compile Include="Sources\Tools\RelayCommand.cs" />
+    <Compile Include="Sources\Base\ViewModels\LinkViewModel.cs" />
+    <Compile Include="Sources\Base\ViewModels\ViewModelBase.cs" />
+    <Compile Include="Sources\Feats\Views\Subviews\FeatsView.xaml.cs">
+      <DependentUpon>FeatsView.xaml</DependentUpon>
+    </Compile>
     <Page Include="CodexDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PanelClasses\xaml\ClassesPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PanelFeats\xaml\featsPanel.xaml">
+    <Page Include="Sources\Player\Views\Subviews\FavoriteGroups.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Sources\Player\Views\Subviews\FavoriteGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="old\PanelClasses\xaml\ClassesPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="old\PanelFeats\xaml\featsPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Sources\Feats\Views\Subviews\BooksViewModel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sources\Feats\Views\Subviews\FeatListItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sources\Feats\Views\FeatPanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sources\Feats\Views\Subviews\FeatSubtypesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sources\Feats\Views\Subviews\FeatView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Sources\Feats\Views\Subviews\FeatTypesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Sources\Base\Views\CommandControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sources\Base\Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -146,15 +245,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="PanelFeats\classes\Feat.cs" />
-    <Compile Include="PanelFeats\classes\FeatSubtype.cs" />
-    <Compile Include="classes\searchClass.cs" />
-    <Compile Include="classes\spellDescriptor.cs" />
-    <Compile Include="classes\spellSubschool.cs" />
-    <Compile Include="PanelClasses\xaml\ClassesPanel.xaml.cs">
+    <Compile Include="Sources\Feats\Models\Feat.cs" />
+    <Compile Include="Sources\Feats\Models\FeatSubtype.cs" />
+    <Compile Include="old\classes\searchClass.cs" />
+    <Compile Include="old\classes\spellDescriptor.cs" />
+    <Compile Include="old\classes\spellSubschool.cs" />
+    <Compile Include="old\PanelClasses\xaml\ClassesPanel.xaml.cs">
       <DependentUpon>ClassesPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Sources\Base\Views\CommandControl.xaml.cs">
+      <DependentUpon>CommandControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sources\Base\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -163,18 +265,30 @@
       <Generator>MSBuild:Compile</Generator>
       <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
     </Page>
+    <Page Include="Sources\Feats\Views\Subviews\FeatsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sources\Player\Views\PlayerPanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sources\Player\Views\Subviews\FavoriteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="panels_temp_folder\addFeatPanel.cs" />
-    <Compile Include="panels_temp_folder\addSpellPanel.cs" />
-    <Compile Include="classes\domain.cs" />
-    <Compile Include="PanelFeats\FeatModel.cs" />
-    <Compile Include="PanelFeats\classes\FeatType.cs" />
-    <Compile Include="PanelMain\mainPanel.cs" />
-    <Compile Include="classes\spellSchool.cs" />
-    <Compile Include="classes\Spellcaster.cs" />
-    <Compile Include="classes\Spell.cs" />
-    <Compile Include="panels_temp_folder\SpellPanel.cs" />
+    <Compile Include="old\addFeatPanel.cs" />
+    <Compile Include="old\addSpellPanel.cs" />
+    <Compile Include="old\classes\domain.cs" />
+    <Compile Include="old\PanelFeats\FeatModel.cs" />
+    <Compile Include="Sources\Feats\Models\FeatType.cs" />
+    <Compile Include="old\PanelMain\mainPanel.cs" />
+    <Compile Include="old\classes\spellSchool.cs" />
+    <Compile Include="old\classes\Spellcaster.cs" />
+    <Compile Include="old\classes\Spell.cs" />
+    <Compile Include="old\SpellPanel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -195,7 +309,9 @@
     <Resource Include="data\Celestia Antiqua.ttf" />
     <None Include="AlphaCodex_CléTemporaire.pfx" />
     <None Include="data\LyndisLibrary.sqlite" />
+    <None Include="data\pictures\UI\desktop.ini" />
     <None Include="data\pictures\UI\feats\subtype\deactivate.png.ck" />
+    <None Include="data\pictures\UI\textures\desktop.ini" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -212,11 +328,6 @@
     <Resource Include="data\pictures\a5aa25ae1ae52e1e2e729e94ad141480.jpg" />
     <Resource Include="data\pictures\background.jpg" />
     <Resource Include="data\pictures\bard-monk.jpg" />
-    <Resource Include="data\pictures\books\DragonLanceCampaignSetting.jpg" />
-    <Resource Include="data\pictures\books\DungeonMastersGuide.jpg" />
-    <Resource Include="data\pictures\books\MiniaturesHandbook.jpg" />
-    <Resource Include="data\pictures\books\MonsterManual.jpg" />
-    <Resource Include="data\pictures\books\PlayersHandbook.jpg" />
     <Resource Include="data\pictures\classes\priest.jpg" />
     <Resource Include="data\pictures\codex.jpg" />
     <Resource Include="data\pictures\craft.jpg" />
@@ -231,9 +342,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="data\pictures\library.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="icone.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
@@ -372,6 +480,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="data\pictures\UI\classes\" />
+    <Folder Include="old\PanelFeats\classes\" />
+    <Folder Include="Sources\Book\Views\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="data\pictures\UI\textures\wood_texture_light.jpg" />
@@ -524,6 +634,130 @@
   <ItemGroup>
     <Resource Include="data\pictures\UI\feats\type\domain.png" />
     <Resource Include="data\pictures\UI\feats\type\dreamtouched.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="jade_splash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="data\pictures\books\BookOfExaltedDeeds.jpg" />
+    <Resource Include="data\pictures\books\CompleteDivine.jpg" />
+    <Resource Include="data\pictures\books\CompleteWarrior.jpg" />
+    <Resource Include="data\pictures\books\Draconomicon.jpg" />
+    <Resource Include="data\pictures\books\DragonLanceCampaignSetting.jpg" />
+    <Resource Include="data\pictures\books\DungeonMastersGuide.jpg" />
+    <Resource Include="data\pictures\books\EberronCampaignSetting.jpg" />
+    <Resource Include="data\pictures\books\Frostburn.jpg" />
+    <Resource Include="data\pictures\books\HeroesOfHorror.jpg" />
+    <Resource Include="data\pictures\books\MiniaturesHandbook.jpg" />
+    <Resource Include="data\pictures\books\MonsterManual.jpg" />
+    <Resource Include="data\pictures\books\PlanarHandbook.jpg" />
+    <Resource Include="data\pictures\books\PlayersGuideToFaerun.jpg" />
+    <Resource Include="data\pictures\books\PlayersHandbook.jpg" />
+    <Resource Include="data\pictures\books\RacesofStones.jpg" />
+    <Resource Include="data\pictures\books\SerpentKingdoms.jpg" />
+    <Resource Include="data\pictures\books\Underdark.jpg" />
+    <Resource Include="data\pictures\books\UnearthedArcana.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="data\pictures\UI\thumbnails\books\BookOfExaltedDeeds.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\CompleteDivine.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\CompleteWarrior.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\Draconomicon.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\DragonLanceCampaignSetting.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\DungeonMastersGuide.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\EberronCampaignSetting.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\Frostburn.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\HeroesOfHorror.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\MiniaturesHandbook.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\MonsterManual.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\PlanarHandbook.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\PlayersGuideToFaerun.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\PlayersHandbook.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\RacesofStones.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\SerpentKingdoms.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\Underdark.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\UnearthedArcana.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="data\pictures\books\AgeOfMortals.jpg" />
+    <Resource Include="data\pictures\books\CompleteAdventurer.jpg" />
+    <Resource Include="data\pictures\books\CompleteArcane.jpg" />
+    <Resource Include="data\pictures\books\ExpandedPsionicsHandbook.jpg" />
+    <Resource Include="data\pictures\books\LibrisMortis.jpg" />
+    <Resource Include="data\pictures\books\LostEmpireOfFaerun.jpg" />
+    <Resource Include="data\pictures\books\MonsterManual3.jpg" />
+    <Resource Include="data\pictures\books\RacesOfDestiny.jpg" />
+    <Resource Include="data\pictures\books\RacesOfTheWild.jpg" />
+    <Resource Include="data\pictures\books\Sandstorm.jpg" />
+    <Resource Include="data\pictures\books\Sharn.jpg" />
+    <Resource Include="data\pictures\books\ShiningSouth.jpg" />
+    <Resource Include="data\pictures\books\WarOfTheLance.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\AgeOfMortals.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\CompleteAdventurer.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\CompleteArcane.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\ExpandedPsionicsHandbook.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\LibrisMortis.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\LostEmpireOfFaerun.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\MonsterManual3.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\RacesOfDestiny.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\RacesOfTheWild.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\Sandstorm.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\Sharn.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\ShiningSouth.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\WarOfTheLance.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="data\pictures\books\BestiaryOfKrynnRevised.jpg" />
+    <Resource Include="data\pictures\books\ChampionsOfRuin.jpg" />
+    <Resource Include="data\pictures\books\Cityscape.jpg" />
+    <Resource Include="data\pictures\books\CompletePsionic.jpg" />
+    <Resource Include="data\pictures\books\DungeonMastersGuide2.jpg" />
+    <Resource Include="data\pictures\books\ExemplarsOfEvil.jpg" />
+    <Resource Include="data\pictures\books\FiendishCodex1.jpg" />
+    <Resource Include="data\pictures\books\HeroesOfBattle.jpg" />
+    <Resource Include="data\pictures\books\KnightlyOrdersOfAnsalon.jpg" />
+    <Resource Include="data\pictures\books\LegendsOfTheTwins.jpg" />
+    <Resource Include="data\pictures\books\MagicOfEberron.jpg" />
+    <Resource Include="data\pictures\books\MonsterManual4.jpg" />
+    <Resource Include="data\pictures\books\MonsterManual5.jpg" />
+    <Resource Include="data\pictures\books\PlayersGuideToEberron.jpg" />
+    <Resource Include="data\pictures\books\PowerOfFaerun.jpg" />
+    <Resource Include="data\pictures\books\RacesOfAnsalon.jpg" />
+    <Resource Include="data\pictures\books\RacesOfEberron.jpg" />
+    <Resource Include="data\pictures\books\RacesOfTheDragon.jpg" />
+    <Resource Include="data\pictures\books\SecretsOfSarlona.jpg" />
+    <Resource Include="data\pictures\books\SecretsOfXenDrik.jpg" />
+    <Resource Include="data\pictures\books\Stormwrack.jpg" />
+    <Resource Include="data\pictures\books\TomeOfBattle.jpg" />
+    <Resource Include="data\pictures\books\Waterdeep.jpg" />
+    <Resource Include="data\pictures\books\WeaponsOfLegacy.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\BestiaryOfKrynnRevised.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\ChampionsOfRuin.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\Cityscape.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\CompletePsionic.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\DungeonMastersGuide2.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\ExemplarsOfEvil.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\FiendishCodex1.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\HeroesOfBattle.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\KnightlyOrdersOfAnsalon.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\LegendsOfTheTwins.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\MagicOfEberron.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\MonsterManual4.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\MonsterManual5.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\PlayersGuideToEberron.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\PowerOfFaerun.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\RacesOfAnsalon.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\RacesOfEberron.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\RacesOfTheDragon.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\SecretsOfSarlona.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\SecretsOfXenDrik.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\Stormwrack.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\TomeOfBattle.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\Waterdeep.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\WeaponsOfLegacy.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="data\pictures\books\none.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\System.Data.SQLite.Core.1.0.99.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('packages\System.Data.SQLite.Core.1.0.99.0\build\net451\System.Data.SQLite.Core.targets')" />

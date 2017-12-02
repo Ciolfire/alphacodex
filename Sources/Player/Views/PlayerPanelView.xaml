@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="AlphaCodex.Views.PlayerPanelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AlphaCodex.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1360">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/AlphaCodex;component/data/pictures/UI/home/background.jpg" Stretch="UniformToFill" />
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="0" Margin="10" BorderBrush="#FF4E2400" BorderThickness="2">
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      Template="{DynamicResource ScrollViewerControlTemplate}">
+                <local:FavoriteGroups/>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</UserControl>

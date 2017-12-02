@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="AlphaCodex.Views.FeatsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AlphaCodex.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="360">
+    <Border Background="#FF211B12">
+        <ItemsControl ItemsSource="{Binding Path=Feats}"
+                      ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      Width="360">
+            <ItemsControl.Background>
+                <ImageBrush ImageSource="/AlphaCodex;component/data/pictures/UI/feats/back_list.png" Stretch="Uniform"/>
+            </ItemsControl.Background>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <local:FeatListItemView/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.Template>
+                <ControlTemplate>
+                    <ScrollViewer Template="{DynamicResource ScrollViewerControlTemplate}" Padding="{TemplateBinding Control.Padding}" Focusable="False">
+                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ItemsControl.Template>
+        </ItemsControl>
+    </Border>
+</UserControl>
