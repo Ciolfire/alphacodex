@@ -14,10 +14,10 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <Border Grid.Row="0" Margin="10" BorderBrush="#FF4E2400" BorderThickness="2">
+        <Border Grid.Row="0" BorderBrush="{DynamicResource BorderColor}" BorderThickness="0,0,2,0">
             <ScrollViewer VerticalScrollBarVisibility="Auto"
                       Template="{DynamicResource ScrollViewerControlTemplate}">
-                <local:FavoriteGroups/>
+                <local:FavoriteGroups Background="#3FBC9D72"/>
             </ScrollViewer>
         </Border>
     </Grid>

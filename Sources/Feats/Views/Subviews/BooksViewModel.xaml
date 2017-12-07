@@ -27,21 +27,23 @@
                         <Border BorderThickness="2" Margin="-2" BorderBrush="#FF640000" CornerRadius="2" >
                             <StackPanel Height="160" Width="109" Background="#FFF1EBB9">
                                 <Grid Width="109" Height="100" Margin="0, 5, 0, 0">
-                                    <Border BorderThickness="2" BorderBrush="#FF220505" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <Border BorderThickness="2" BorderBrush="{DynamicResource BorderColor}"
+                                            VerticalAlignment="Center" HorizontalAlignment="Center">
                                         <Image Source="{Binding Path=Cover, FallbackValue={StaticResource defaultBook}}"/>
                                     </Border>
-                                    <TextBlock Margin="2" >
-                                    <Hyperlink TextDecorations="{x:Null}">
-                                        <Hyperlink.InputBindings>
-                                            <MouseBinding Gesture="LeftClick" Command="{Binding Path=SwitchActivationCommand}"/>
-                                            <!--<MouseBinding Gesture="RightClick" Command="{Binding Path=SwitchActivationCommand}" CommandParameter="{Binding}"/>-->
-                                        </Hyperlink.InputBindings>
-                                        <Image Opacity="{Binding Path=IsDisabled}" Source="/AlphaCodex;component/data/pictures/UI/feats/type/deactivate.png"/>
-                                    </Hyperlink>
-                                    </TextBlock>
+                                    <Border BorderThickness="2" BorderBrush="{DynamicResource BorderColor}"
+                                            VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <local:CommandControl Command="{Binding Path=SwitchActivationCommand}" Cursor="Hand">
+                                            <Image Opacity="{Binding Path=IsDisabled}"
+                                               Source="/AlphaCodex;component/data/pictures/UI/thumbnails/books/book_deactivated.png"/>
+                                        </local:CommandControl>
+                                    </Border>
                                 </Grid>
                                 <Border Height="55">
-                                    <TextBlock Text="{Binding Name}" FontFamily="{StaticResource MainFont}" Foreground="{StaticResource TitleColor}" FontSize="16" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Name}" TextWrapping="Wrap" TextAlignment="Center"
+                                               FontFamily="{StaticResource MainFont}" FontSize="16"
+                                               Foreground="{StaticResource TitleColor}"
+                                               VerticalAlignment="Center"/>
                                 </Border>
                             </StackPanel>
                         </Border>

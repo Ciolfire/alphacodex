@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlphaCodex.ViewModels
 {
-    class PlayerViewModel : ViewModelBase
+    public class PlayerViewModel : ViewModelBase
     {
         #region Fields
         private Player _player;

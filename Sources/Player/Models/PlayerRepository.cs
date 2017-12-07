@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlphaCodex.Models
 {
-    class PlayerRepository
+    public class PlayerRepository
     {
         #region Fields
         private Player _player;

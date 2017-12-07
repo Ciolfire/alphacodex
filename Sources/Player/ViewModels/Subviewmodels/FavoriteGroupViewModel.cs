@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlphaCodex.ViewModels
 {
-    class FavoriteGroupViewModel : ViewModelBase
+    public class FavoriteGroupViewModel : ViewModelBase
     {
         #region Fields
         private FavoriteGroup _favoriteGroup;

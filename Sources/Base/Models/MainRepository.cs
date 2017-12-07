@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlphaCodex.Models
 {
-    class MainRepository
+    public class MainRepository
     {
         #region Fields
         private List<Book> _books;

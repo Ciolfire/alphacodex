@@ -14,7 +14,9 @@
     <FontFamily x:Key="SecondaryFont">Buxton Sketch</FontFamily>
     <SolidColorBrush x:Key="TitleColor" Color="#FF003364"/>
     <SolidColorBrush x:Key="TextColor" Color="#FF322720"/>
-
+    <SolidColorBrush x:Key="BackgroundColor" Color="#FFF1EBB9"/>
+    <SolidColorBrush x:Key="BackgroundColor2" Color="#FF211B12"/>
+    <SolidColorBrush x:Key="BorderColor" Color="#FF640000"/>
     <SolidColorBrush x:Key="ListBox.Static.Background" Color="#FFFFFFFF"/>
     <SolidColorBrush x:Key="ListBox.Static.Border" Color="#FFABADB3"/>
     <SolidColorBrush x:Key="ListBox.Disabled.Background" Color="#FFFFFFFF"/>

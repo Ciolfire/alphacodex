@@ -16,34 +16,34 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Border BorderBrush="Black" BorderThickness="1,1,1,0"
-                        Margin="0,0,0,-30">
+                        Margin="0,0,0,0">
                     <StackPanel Grid.Row="0"
-                                Background="#FFF1EBB9">
+                                Background="{DynamicResource BackgroundColor}">
                         <StackPanel Orientation="Horizontal"
                                     Margin="10, 0">
                             <Label Content="Search"
                                    FontSize="15" FontWeight="SemiBold"
-                                   Foreground="#FF003364"
+                                   Foreground="{DynamicResource TitleColor}"
                                    Width="280"/>
                             <RadioButton IsChecked="{Binding Path=SearchMode, Converter={tools:FeatSearchToBoolConverter}, ConverterParameter=Name}" 
                                          VerticalAlignment="Center"
-                                         Foreground="{DynamicResource TitleColor}" BorderBrush="{DynamicResource TitleColor}" Background="#33F9FF71"
+                                         Foreground="{DynamicResource TitleColor}" BorderBrush="{DynamicResource TitleColor}" Background="#33FFFFFF"
                                          Margin="0,0,5,0">Name
                             </RadioButton>
                             <RadioButton IsChecked="{Binding Path=SearchMode, Converter={tools:FeatSearchToBoolConverter}, ConverterParameter=Benefit}"
                                          VerticalAlignment="Center"
-                                         Foreground="{DynamicResource TitleColor}" BorderBrush="{DynamicResource TitleColor}" Background="#33F9FF71"
+                                         Foreground="{DynamicResource TitleColor}" BorderBrush="{DynamicResource TitleColor}" Background="#33FFFFFF"
                                          Margin="0,0,5,0">Benefit
                             </RadioButton>
                             <RadioButton IsChecked="{Binding Path=SearchMode, Converter={tools:FeatSearchToBoolConverter}, ConverterParameter=Prerequisite}"
                                          VerticalAlignment="Center"
-                                         Foreground="{DynamicResource TitleColor}" BorderBrush="{DynamicResource TitleColor}" Background="#33F9FF71"
+                                         Foreground="{DynamicResource TitleColor}" BorderBrush="{DynamicResource TitleColor}" Background="#33FFFFFF"
                                          Margin="0,0,5,0">Prerequisite
                             </RadioButton>
                         </StackPanel>
                         <TextBox Text="{Binding Path=ToFind, UpdateSourceTrigger=PropertyChanged}" FontFamily="{DynamicResource MainFont}" FontSize="24"
-                                 Margin="10,2,10,35" Height="26"
-                                 Background="#33F9FF71" BorderBrush="#FF640000" CaretBrush="#FF640000" Foreground="#FF640000" SelectionBrush="#7FD14A4A"
+                                 Margin="10,0,10,10" Height="26"
+                                 Background="#33FFFFFF" BorderBrush="{DynamicResource BorderColor}" CaretBrush="{DynamicResource BorderColor}" Foreground="{DynamicResource BorderColor}" SelectionBrush="#7FD14A4A"
                                  BorderThickness="1"
                                  HorizontalContentAlignment="Center"
                                  Style="{DynamicResource TextBoxStyleSearch}">
@@ -57,7 +57,7 @@
                 </Border>
                 <TabControl Grid.Row="1"
                             Padding="0"
-                            BorderBrush="#FF640000" Background="#FF640000"
+                            BorderBrush="{x:Null}" Background="{x:Null}"
                             Style="{DynamicResource TabControlStyleFeat}">
                     <TabItem Header="Types"
                              Background="#FFF1EBB9" BorderBrush="#FF211B12" Foreground="#FF640000"
@@ -84,10 +84,47 @@
             <Border.Background>
                 <ImageBrush ImageSource="/AlphaCodex;component/data/pictures/UI/feats/central_back.jpg"/>
             </Border.Background>
-            <ScrollViewer VerticalScrollBarVisibility="Auto" 
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" 
                           Template="{DynamicResource ScrollViewerControlTemplate}">
-                <local:FeatView/>
-            </ScrollViewer>
+                    <local:FeatView/>
+                </ScrollViewer>
+                <Grid Grid.Row="1" Height="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Command="{Binding ActivateAllTypesCommand}"
+                            Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BorderColor}"
+                            Cursor="Hand">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/AlphaCodex;component/data/pictures/UI/copy_img.png"/>
+                            <TextBlock>Copy as Picture</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Column="1" Command="{Binding ActivateAllTypesCommand}"
+                            Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BorderColor}"
+                            Cursor="Hand">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/AlphaCodex;component/data/pictures/UI/copy_text.png"/>
+                            <TextBlock>Copy as Text</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Column="2" Command="{Binding DeactivateAllTypesCommand}"
+                            Background="{DynamicResource BorderColor}" Foreground="{DynamicResource BackgroundColor}"
+                            Cursor="Hand">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/AlphaCodex;component/data/pictures/UI/favorite_off.png"/>
+                            <TextBlock>Add Favorite...</TextBlock>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </Grid>
         </Border>
     </DockPanel>
 </UserControl>

@@ -20,6 +20,7 @@ namespace AlphaCodex.ViewModels
             Prerequisite
         }
         #region Fields
+        private MainViewModel _root;
         private FeatRepository _featRepository;
         private FeatViewModel _feat = null;
         private ObservableCollection<FeatViewModel> _feats;
@@ -301,8 +302,9 @@ namespace AlphaCodex.ViewModels
         }
         #endregion
         #region Constructor
-        public FeatPanelViewModel(FeatRepository feats)
+        public FeatPanelViewModel(FeatRepository feats, MainViewModel root)
         {
+            _root = root;
             _featRepository = feats;
             //_feats = new ObservableCollection<FeatViewModel>(_featRepository.GetFeats().Select(feat => new FeatViewModel(feat)));
             foreach (Book book in feats.GetBooks())

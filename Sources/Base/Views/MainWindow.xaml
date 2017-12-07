@@ -16,14 +16,13 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <TabControl x:Name="menu" Style="{DynamicResource TabControlStyleMain}">
-            <TabItem Header="test" Style="{DynamicResource TabItemStyleMain}">
-            </TabItem>
-            <TabItem Header="Feats" Style="{DynamicResource TabItemStyleMain}">
-                <vw:FeatPanelView DataContext="{Binding Path=FeatsVM}"/>
-            </TabItem>
-            <TabItem Header="{Binding Path=PlayerVM.Player.Name}" Style="{DynamicResource TabItemStyleMain}">
+        <TabControl Style="{DynamicResource TabControlStyleMain}"
+                    SelectedIndex="{Binding Path=ActivePanel}">
+            <TabItem Header="{Binding Path=PlayerVM.Player.Name}" Style="{DynamicResource TabItemStyleMain}" >
                 <vw:PlayerPanelView DataContext="{Binding Path=PlayerVM}"/>
+            </TabItem>
+            <TabItem Header="Feats" Style="{DynamicResource TabItemStyleMain}" >
+                <vw:FeatPanelView DataContext="{Binding Path=FeatsVM}"/>
             </TabItem>
         </TabControl>
         <!--<Border x:Name="Welcome" Panel.ZIndex="1" BorderBrush="#FF392F21" BorderThickness="5" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">

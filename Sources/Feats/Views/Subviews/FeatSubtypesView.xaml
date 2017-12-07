@@ -11,7 +11,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <ListBox ItemsSource="{Binding Path=Subtypes}" Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,20,0,0" Background="#FF211B12" Style="{DynamicResource ListBoxStyleFeats}" BorderBrush="Black">
+        <ListBox ItemsSource="{Binding Path=Subtypes}" Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,20,0,0" Background="{DynamicResource BackgroundColor2}" Style="{DynamicResource ListBoxStyleFeats}" BorderBrush="Black">
         <ListBox.ItemsPanel>
             <ItemsPanelTemplate>
                 <WrapPanel Orientation="Horizontal"/>
@@ -24,16 +24,11 @@
                         <StackPanel Height="130" Width="150" Background="#FFF1EBB9">
                             <Grid Width="100" Height="100" Margin="0, 5, 0, 0">
                                 <Image Source="{Binding Path=Picture}" VerticalAlignment="Center" />
-                                <TextBlock VerticalAlignment="Center">
-                                    <Hyperlink TextDecorations="{x:Null}">
-                                        <Hyperlink.InputBindings>
-                                            <MouseBinding Gesture="LeftClick" Command="{Binding Path=SwitchActivationCommand}"/>
-                                        </Hyperlink.InputBindings>
-                                        <Image Opacity="{Binding Path=IsDisabled}" Source="/AlphaCodex;component/data/pictures/UI/feats/subtype/deactivate.png"/>
-                                    </Hyperlink>
-                                </TextBlock>
-                                <!--<Image Visibility="Collapsed" Source="/AlphaCodex;component/data/pictures/UI/feats/subtype/deactivate.png" Tag="{Binding Path=Id}" Opacity="{Binding Path=Disabled}" Cursor="Hand" ToolTip="Use right click to select/deselect categories" Width="100" Height="100" Margin="0, 5, 0, 0"/>-->
-                            </Grid>
+                                    <local:CommandControl Command="{Binding Path=SwitchActivationCommand}" Cursor="Hand">
+                                        <Image Opacity="{Binding Path=IsDisabled}"
+                                               Source="/AlphaCodex;component/data/pictures/UI/feats/subtype/deactivate.png"/>
+                                    </local:CommandControl>
+                                </Grid>
                             <TextBlock Text="{Binding Path=Name}" FontSize="16" FontFamily="/AlphaCodex;component/data/#Celestia Antiqua" TextAlignment="Center" Margin="5,1,5,5" Foreground="#FF003364"/>
                         </StackPanel>
                     </Border>

@@ -17,7 +17,7 @@
                      MinHeight="179" MaxHeight="200"
                      SelectionMode="Multiple"
                      ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                     Background="#E5FFF1B4">
+                     Background="{DynamicResource BackgroundColor2}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <local:FavoriteView/>

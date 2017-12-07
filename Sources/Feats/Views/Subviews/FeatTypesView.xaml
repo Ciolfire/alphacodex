@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AlphaCodex.Views"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="510">
     <Grid>
@@ -10,7 +11,11 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <ListBox ItemsSource="{Binding Types}" Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,20,0,0" Background="#FF150D09" Style="{DynamicResource ListBoxStyleFeats}" BorderBrush="{x:Null}">
+        <ListBox ItemsSource="{Binding Types}" Style="{DynamicResource ListBoxStyleFeats}"
+                 Grid.Row="0"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 Margin="0,20,0,0"
+                 Background="{x:Null}" BorderBrush="{x:Null}">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal"/>
@@ -23,15 +28,14 @@
                             <StackPanel Height="130" Width="150" Background="#FFF1EBB9">
                                 <Grid Width="100" Height="100" Margin="0, 5, 0, 0">
                                     <Image Source="{Binding Path=Picture}"/>
-                                    <TextBlock>
-                                    <Hyperlink TextDecorations="{x:Null}">
-                                        <Hyperlink.InputBindings>
+                                    <local:CommandControl Command="{Binding Path=SwitchActivationCommand}" Cursor="Hand">
+                                        <Image Opacity="{Binding Path=IsDisabled}"
+                                               Source="/AlphaCodex;component/data/pictures/UI/feats/type/deactivate.png"/>
+                                    </local:CommandControl>
+                                    <!--<Hyperlink.InputBindings>
                                             <MouseBinding Gesture="LeftClick" Command="{Binding Path=SwitchActivationCommand}"/>
                                             <MouseBinding Gesture="RightClick" Command="{Binding Path=SwitchActivationCommand}" CommandParameter="{Binding}"/>
-                                        </Hyperlink.InputBindings>
-                                        <Image Opacity="{Binding Path=IsDisabled}" ToolTip="{Binding Info}" Source="/AlphaCodex;component/data/pictures/UI/feats/type/deactivate.png"/>
-                                    </Hyperlink>
-                                    </TextBlock>
+                                        </Hyperlink.InputBindings>-->
                                 </Grid>
                                 <TextBlock Text="{Binding Name}" FontFamily="{StaticResource MainFont}" Foreground="{StaticResource TitleColor}" FontSize="16" TextAlignment="Center" Margin="5, 1, 5, 5"/>
                             </StackPanel>

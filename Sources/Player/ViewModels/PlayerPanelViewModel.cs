@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace AlphaCodex.ViewModels
 {
-    class PlayerPanelViewModel
+    public class PlayerPanelViewModel
     {
         #region Fields
+        private MainViewModel _root;
         private PlayerRepository _playerRepository;
         public PlayerViewModel _player;
         private ObservableCollection<FavoriteGroupViewModel> _favoriteGroups;
@@ -30,13 +31,18 @@ namespace AlphaCodex.ViewModels
         }
         #endregion
         #region Constructor
-        public PlayerPanelViewModel(PlayerRepository repository)
+        public PlayerPanelViewModel(PlayerRepository repository, MainViewModel root)
         {
+            _root = root;
             _playerRepository = repository;
             _player = new PlayerViewModel(repository.GetPlayer());
             foreach (FavoriteGroup group in repository.GetFavoriteGroups())
             {
                 FavoriteGroupViewModel newItem = new FavoriteGroupViewModel(group);
+                foreach (LinkViewModel link in newItem.Favorites)
+                {
+                    link.LinkClicked += _root.LinkClickedEventHandler;
+                }
                 FavoriteGroups.Add(newItem);
             }
         }

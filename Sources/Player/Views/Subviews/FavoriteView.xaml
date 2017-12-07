@@ -6,12 +6,14 @@
              xmlns:local="clr-namespace:AlphaCodex.Views"
              mc:Ignorable="d">
     <StackPanel Orientation="Horizontal"
-                Cursor="Hand">
+                Cursor="Hand"
+                Background="{DynamicResource BorderColor}">
         <TextBlock Grid.Column="0" 
                    Width="168"
                    Text="{Binding Path=DisplayName}" TextTrimming="CharacterEllipsis"
-                   Foreground="{DynamicResource TitleColor}"
-                   ToolTip="{Binding Path=DisplayName}"/>
-        <Button Width="20" Background="#FF650A0A">-</Button>
+                   Foreground="{DynamicResource TitleColor}" Background="{DynamicResource BackgroundColor}"
+                   ToolTip="{Binding Path=DisplayName}" 
+                   Margin="1,1,0,1" Padding="1"/>
+        <Button Width="19" Margin="0,1,1,1" Background="#FF650A0A" Command="{Binding Path=NavigateCommand}">-</Button>
     </StackPanel>
 </UserControl>

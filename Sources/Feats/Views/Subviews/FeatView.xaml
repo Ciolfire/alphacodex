@@ -13,30 +13,6 @@
         <Border BorderThickness="2"
                 Background="#E5FFF1B4" BorderBrush="#FF150D09"
                 VerticalAlignment="Top" HorizontalAlignment="Center">
-            <!--<Grid Name="FeatOptionsGrid" Margin="0,0,0,0" HorizontalAlignment="Right" Panel.ZIndex="2" VerticalAlignment="Top">
-                        <Image Source="/AlphaCodex;component/data/pictures/UI/setting.png" Height="50" Width="50" Name="FeatOptions" VerticalAlignment="Top" HorizontalAlignment="Right" Cursor="Hand" MouseEnter="FeatOptions_MouseEnter"/>
-                        <Border  MouseLeave="FeatOptions_MouseLeave" Name="FeatOptionsBlock" BorderBrush="#FF760000" CornerRadius="2" BorderThickness="2" Cursor="Hand" Panel.ZIndex="1" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed" Margin="0,5,5,0" Background="#BFFFEA91">
-                            <StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Name="FeatOptionsFavoriteImg" Source="/AlphaCodex;component/data/pictures/UI/favorite_off.png" HorizontalAlignment="Left" Height="30" Margin="5,2,0,2"/>
-                                    <TextBlock Name="FeatOptionsFavoriteText" Text="Favorite" VerticalAlignment="Center" Padding="5" Foreground="#FF003364"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="/AlphaCodex;component/data/pictures/UI/book.png" HorizontalAlignment="Left" Height="30" Margin="5,2,0,2"/>
-                                    <TextBlock Text="{Binding Path=Book.Name}" VerticalAlignment="Center" Padding="5" Foreground="#FF003364"/>
-                                    <TextBlock Text="{Binding Path=Page}" VerticalAlignment="Center" Padding="5" Foreground="#FF003364"/>
-                                </StackPanel>
-                                <StackPanel Tag="{Binding Path=Id}" Orientation="Horizontal" MouseLeftButtonDown="StackPanelCopyT_MouseLeftButtonDown">
-                                    <Image Source="/AlphaCodex;component/data/pictures/UI/copy_text.png" HorizontalAlignment="Left" Height="30" Margin="5,2,0,2"/>
-                                    <TextBlock Text="Copy as text" VerticalAlignment="Center" Padding="5" Foreground="#FF003364"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" MouseLeftButtonDown="StackPanelCopyP_MouseLeftButtonDown">
-                                    <Image Source="/AlphaCodex;component/data/pictures/UI/copy_img.png" HorizontalAlignment="Left" Height="30" Margin="5,2,0,2"/>
-                                    <TextBlock Text="Copy as picture" VerticalAlignment="Center" Padding="5" Foreground="#FF003364"/>
-                                </StackPanel>
-                            </StackPanel>
-                        </Border>
-                    </Grid>-->
             <StackPanel Margin="5">
                 <Image Visibility="{Binding Path=IsCurrent, Converter={tools:InvertedBooleanToVisibilityConverter}}"
                        Source="/AlphaCodex;component/data/pictures/UI/old.png"

@@ -82,9 +82,9 @@ namespace AlphaCodex.ViewModels
             {
                 throw new ArgumentNullException("Link");
             }
-            Link link = new Link(favorite.Name, favorite.Id, favorite.Type);
+            _link = new Link(favorite.Name, favorite.Id, favorite.Type);
             if (string.IsNullOrWhiteSpace(favorite.Name))
-                DisplayName = link.ParentId.ToString();
+                DisplayName = _link.ParentId.ToString();
             else
                 DisplayName = favorite.Name;
         }
