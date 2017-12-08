@@ -344,6 +344,8 @@ namespace AlphaCodex.ViewModels
             }
             DisplayName += "]";
         }
+
+        public override string ToString() => _feat.ToString();
         #endregion
     }
 }

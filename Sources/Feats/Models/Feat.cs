@@ -146,6 +146,32 @@ namespace AlphaCodex.Models
                 }
             }
         }
+
+        public override string ToString()
+        {
+            string title = Name + " [" + Type.Name;
+            if (TypeExtra != null)
+                title += ", " + TypeExtra.Name;
+            title += "]";
+
+            List<string> text = new List<string>
+            {
+                title,
+                Description
+            };
+
+            if (!string.IsNullOrWhiteSpace(PrerequisitesBaseString))
+                text.Add("Prerequisite: " + PrerequisitesString);
+            text.Add("Benefit: " + Benefit);
+            if (!string.IsNullOrWhiteSpace(Normal))
+                text.Add("Normal: " + Normal);
+            if (!string.IsNullOrWhiteSpace(Special))
+                text.Add("Special: " + Special);
+            if (!string.IsNullOrWhiteSpace(Note))
+                text.Add("Note: " + Note);
+            text.Add(Book.Name + " page " + Page.ToString());
+            return (string.Join("\n\n", text));
+        }
         #endregion
     }
 }

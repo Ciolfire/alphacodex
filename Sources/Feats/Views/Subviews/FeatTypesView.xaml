@@ -45,8 +45,12 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Button Command="{Binding ActivateAllTypesCommand}" Width="255" Background="#FFF1EBB9" Foreground="#FF640000">Select All</Button>
-            <Button Command="{Binding DeactivateAllTypesCommand}" Width="255" Foreground="#FFF1EBB9" Background="#FF640000">Deselect All</Button>
+            <Button Command="{Binding ActivateAllTypesCommand}"
+                    Width="255" Cursor="Hand"
+                    Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BorderColor}">Select All</Button>
+            <Button Command="{Binding DeactivateAllTypesCommand}"
+                    Width="255" Cursor="Hand"
+                    Background="{DynamicResource BorderColor}" Foreground="{DynamicResource BackgroundColor}">Deselect All</Button>
         </StackPanel>
     </Grid>
 </UserControl>

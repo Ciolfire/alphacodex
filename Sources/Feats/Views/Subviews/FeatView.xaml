@@ -8,83 +8,85 @@
     <UserControl.Resources>
         <Style BasedOn="{StaticResource links}" TargetType="{x:Type Hyperlink}"/>
     </UserControl.Resources>
-    <Grid DataContext="{Binding Path=SelectedFeat, NotifyOnTargetUpdated=True}"
+    <Border Name="test" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid DataContext="{Binding Path=SelectedFeat, NotifyOnTargetUpdated=True}"
           TargetUpdated="FormatBindingData">
-        <Border BorderThickness="2"
+            <Border BorderThickness="2"
                 Background="#E5FFF1B4" BorderBrush="#FF150D09"
                 VerticalAlignment="Top" HorizontalAlignment="Center">
-            <StackPanel Margin="5">
-                <Image Visibility="{Binding Path=IsCurrent, Converter={tools:InvertedBooleanToVisibilityConverter}}"
+                <StackPanel Margin="5">
+                    <Image Visibility="{Binding Path=IsCurrent, Converter={tools:InvertedBooleanToVisibilityConverter}}"
                        Source="/AlphaCodex;component/data/pictures/UI/old.png"
                        Height="160" Width="158"/>
-                <TextBlock Text="{Binding Path=DisplayName}" TextAlignment="Center" TextWrapping="WrapWithOverflow"
+                    <TextBlock Text="{Binding Path=DisplayName}" TextAlignment="Center" TextWrapping="WrapWithOverflow"
                            Foreground="{StaticResource TitleColor}"
                            FontFamily="{StaticResource MainFont}" FontSize="40" FontWeight="Bold"/>
-                <DockPanel>
-                    <Grid DockPanel.Dock="Right">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="100"/>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="70"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="75"/>
-                            <ColumnDefinition Width="75"/>
-                            <ColumnDefinition Width="45"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"
+                    <DockPanel>
+                        <Grid DockPanel.Dock="Right">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="100"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="70"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="75"/>
+                                <ColumnDefinition Width="75"/>
+                                <ColumnDefinition Width="45"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"
                                Source="{Binding Path=Subtype.Picture}"
                                ToolTip="{Binding Path=Subtype.Name}"/>
-                        <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2"
+                            <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2"
                                Source="{Binding Path=Type.Picture}"/>
-                    </Grid>
-                    <TextBlock DockPanel.Dock="Right"
+                        </Grid>
+                        <TextBlock DockPanel.Dock="Right"
                                Text="{Binding Path=Description}" FontFamily="{StaticResource SecondaryFont}" FontSize="14" TextWrapping="Wrap"
                                Foreground="{StaticResource TextColor}"
                                VerticalAlignment="Center"/>
-                </DockPanel>
-                <StackPanel Visibility="{Binding Path=PrerequisitesString, Converter={tools:StringToVisibilityConverter}}" Margin="10,0,10,10">
-                    <TextBlock Text="Prerequisite:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
-                    <TextBlock Name="Prerequisite" FontSize="18" TextWrapping="Wrap">
+                    </DockPanel>
+                    <StackPanel Visibility="{Binding Path=PrerequisitesString, Converter={tools:StringToVisibilityConverter}}" Margin="10,0,10,10">
+                        <TextBlock Text="Prerequisite:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
+                        <TextBlock Name="Prerequisite" FontSize="18" TextWrapping="Wrap">
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Margin="10,0,10,10">
+                        <TextBlock Text="Benefit:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
+                        <TextBlock x:Name="Benefit" Foreground="{StaticResource TextColor}" FontSize="18" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <StackPanel Visibility="{Binding Path=Normal, Converter={tools:StringToVisibilityConverter}}" Margin="10,0,10,10">
+                        <TextBlock Text="Normal:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
+                        <TextBlock Name="Normal" Foreground="{StaticResource TextColor}" FontSize="18" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <StackPanel Visibility="{Binding Path=Special, Converter={tools:StringToVisibilityConverter}}" Margin="10,0,10,10">
+                        <TextBlock Text="Special:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
+                        <TextBlock Name="Special" Foreground="{StaticResource TextColor}" FontSize="18" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <StackPanel Visibility="{Binding Path=Note, Converter={tools:StringToVisibilityConverter}}" Margin="10,0,10,10">
+                        <TextBlock Text="Note:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
+                        <TextBlock Name="Note" Foreground="{StaticResource TextColor}" FontSize="18" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <StackPanel Visibility="{Binding Path=Children, Converter={tools:CollectionToVisibilityConverter}}" Margin="10,0,10,10">
+                        <TextBlock Text="Required for:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
+                        <TextBlock x:Name="Children" Foreground="{StaticResource TextColor}" FontFamily="{StaticResource MainFont}" FontSize="18" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <StackPanel Visibility="{Binding Path=History, Converter={tools:CollectionToVisibilityConverter}}" Margin="10,0,10,10">
+                        <TextBlock Text="Previously appeared in:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
+                        <TextBlock x:Name="History" FontFamily="{StaticResource MainFont}" FontSize="18" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <StackPanel Visibility="{Binding Path=IsCurrent, Converter={tools:InvertedBooleanToVisibilityConverter}}" Margin="10,0,10,10">
+                        <TextBlock Text="Revised in:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
+                        <TextBlock x:Name="CurrentFeat" FontFamily="{StaticResource MainFont}" FontSize="18" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <TextBlock FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold" Foreground="{StaticResource TextColor}" HorizontalAlignment="Right">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} page {1}">
+                                <Binding Path="Book.Name"/>
+                                <Binding Path="Page"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
                     </TextBlock>
                 </StackPanel>
-                <StackPanel Margin="10,0,10,10">
-                    <TextBlock Text="Benefit:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
-                    <TextBlock x:Name="Benefit" Foreground="{StaticResource TextColor}" FontSize="18" TextWrapping="Wrap"/>
-                </StackPanel>
-                <StackPanel Visibility="{Binding Path=Normal, Converter={tools:StringToVisibilityConverter}}" Margin="10,0,10,10">
-                    <TextBlock Text="Normal:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
-                    <TextBlock Name="Normal" Foreground="{StaticResource TextColor}" FontSize="18" TextWrapping="Wrap"/>
-                </StackPanel>
-                <StackPanel Visibility="{Binding Path=Special, Converter={tools:StringToVisibilityConverter}}" Margin="10,0,10,10">
-                    <TextBlock Text="Special:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
-                    <TextBlock Name="Special" Foreground="{StaticResource TextColor}" FontSize="18" TextWrapping="Wrap"/>
-                </StackPanel>
-                <StackPanel Visibility="{Binding Path=Note, Converter={tools:StringToVisibilityConverter}}" Margin="10,0,10,10">
-                    <TextBlock Text="Note:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
-                    <TextBlock Name="Note" Foreground="{StaticResource TextColor}" FontSize="18" TextWrapping="Wrap"/>
-                </StackPanel>
-                <StackPanel Visibility="{Binding Path=Children, Converter={tools:CollectionToVisibilityConverter}}" Margin="10,0,10,10">
-                    <TextBlock Text="Required for:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
-                    <TextBlock x:Name="Children" Foreground="{StaticResource TextColor}" FontFamily="{StaticResource MainFont}" FontSize="18" TextWrapping="Wrap"/>
-                </StackPanel>
-                <StackPanel Visibility="{Binding Path=History, Converter={tools:CollectionToVisibilityConverter}}" Margin="10,0,10,10">
-                    <TextBlock Text="Previously appeared in:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
-                    <TextBlock x:Name="History" FontFamily="{StaticResource MainFont}" FontSize="18" TextWrapping="Wrap"/>
-                </StackPanel>
-                <StackPanel Visibility="{Binding Path=IsCurrent, Converter={tools:InvertedBooleanToVisibilityConverter}}" Margin="10,0,10,10">
-                    <TextBlock Text="Revised in:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
-                    <TextBlock x:Name="CurrentFeat" FontFamily="{StaticResource MainFont}" FontSize="18" TextWrapping="Wrap"/>
-                </StackPanel>
-                <TextBlock FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold" Foreground="{StaticResource TextColor}" HorizontalAlignment="Right">
-                    <TextBlock.Text>
-                        <MultiBinding StringFormat="{}{0} page {1}">
-                            <Binding Path="Book.Name"/>
-                            <Binding Path="Page"/>
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
-            </StackPanel>
-        </Border>
-    </Grid>
+            </Border>
+        </Grid>
+    </Border>
 </UserControl>

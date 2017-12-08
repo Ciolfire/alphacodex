@@ -300,6 +300,25 @@ namespace AlphaCodex.ViewModels
                 }
             }
         }
+
+        RelayCommand _copyAsTextCommand;
+        public ICommand CopyAsTextCommand
+        {
+            get
+            {
+                if (_copyAsTextCommand == null)
+                {
+                    _copyAsTextCommand = new RelayCommand(param => CopyAsText());
+                }
+                return _copyAsTextCommand;
+            }
+        }
+        private void CopyAsText()
+        {
+            if (_feat == null)
+                return;
+            Clipboard.SetText(_feat.ToString());
+        }
         #endregion
         #region Constructor
         public FeatPanelViewModel(FeatRepository feats, MainViewModel root)

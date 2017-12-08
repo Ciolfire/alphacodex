@@ -91,7 +91,7 @@
                 </Grid.RowDefinitions>
                 <ScrollViewer VerticalScrollBarVisibility="Auto" 
                           Template="{DynamicResource ScrollViewerControlTemplate}">
-                    <local:FeatView/>
+                    <local:FeatView x:Name="FeatView"/>
                 </ScrollViewer>
                 <Grid Grid.Row="1" Height="20">
                     <Grid.ColumnDefinitions>
@@ -99,7 +99,8 @@
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Command="{Binding ActivateAllTypesCommand}"
+                    <Button Grid.Column="0" Click="CopyAsPicture"
+                            ToolTip="Does not create a file; use it to paste the picture(try Paint)"
                             Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BorderColor}"
                             Cursor="Hand">
                         <StackPanel Orientation="Horizontal">
@@ -107,7 +108,7 @@
                             <TextBlock>Copy as Picture</TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Grid.Column="1" Command="{Binding ActivateAllTypesCommand}"
+                    <Button Grid.Column="1" Command="{Binding CopyAsTextCommand}"
                             Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BorderColor}"
                             Cursor="Hand">
                         <StackPanel Orientation="Horizontal">

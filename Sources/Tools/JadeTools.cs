@@ -67,13 +67,32 @@ namespace AlphaCodex.Tools
             return table;
         }
 
+
+        public static Inline ParseString(string toParse)
+        {
+            string boldPattern = @"(\*{2}.+\*{2})";
+            string italicPattern = @"(\~[^~]+\~)";
+
+            if (Regex.IsMatch(toParse, boldPattern))
+            {
+                return new Bold(new Run(toParse.Trim('*')) { Foreground = Colors.TitleBlue, FontSize = 16 });
+            }
+            // else check if it's italic
+            else if (Regex.IsMatch(toParse, italicPattern))
+            {
+                return new Italic(new Run(toParse.Trim('~')) { Foreground = Colors.TitleBlue });
+            }
+            else
+                return new Run(toParse);
+        }
         /// <summary>
         /// Create the text style
         /// </summary>
-        public static void ParseText(string features, string parent, TextBlock target)
+        public static void ParseText(string features, string parent, TextBlock target, bool clear=true)
         {
             DatabaseAccess db = null;
-            target.Inlines.Clear();
+            if(clear)
+                target.Inlines.Clear();
             if (features == null)
                 return;
 
@@ -122,9 +141,7 @@ namespace AlphaCodex.Tools
         public static BitmapSource CaptureScreen(Visual target, double dpiX, double dpiY)
         {
             if (target == null)
-            {
                 return null;
-            }
             FrameworkElement elem = (FrameworkElement)target;
             Rect bounds = VisualTreeHelper.GetDescendantBounds(target);
             RenderTargetBitmap rtb = new RenderTargetBitmap((int)(elem.ActualWidth * dpiX / 96.0),

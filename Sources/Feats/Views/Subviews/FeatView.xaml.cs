@@ -26,6 +26,7 @@ namespace AlphaCodex.Views
             {
                 this.Visibility = System.Windows.Visibility.Visible;
                 JadeTools.ParseText(feat.Benefit, "feat", Benefit);
+                JadeTools.ParseText(feat.Benefit, "feat", Benefit);
                 JadeTools.ParseText(feat.Normal, "feat", Normal);
                 JadeTools.ParseText(feat.Special, "feat", Special);
                 JadeTools.ParseText(feat.Note, "feat", Note);
@@ -106,7 +107,7 @@ namespace AlphaCodex.Views
                 }
                 else
                 {
-                    Prerequisite.Inlines.Add(prerequisitePart);
+                    JadeTools.ParseText(prerequisitePart, "feat", Prerequisite, false);
                 }
             }
         }
