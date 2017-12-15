@@ -8,7 +8,6 @@ namespace AlphaCodex.Models
         #region Properties
         public int Id { get; set; }
         public string Name { get; set; }
-        //public List<FavoriteGroup> FavoriteGroups { get; set; }
         #endregion
 
         #region constructor
@@ -16,7 +15,6 @@ namespace AlphaCodex.Models
         {
             Id = (int)(long)reader["id"];
             Name = reader["name"] as string;
-            //FavoriteGroups = new List<FavoriteGroup>();
         }
 
         //internal void SetName(string text)

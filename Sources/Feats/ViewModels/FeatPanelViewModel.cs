@@ -29,9 +29,11 @@ namespace AlphaCodex.ViewModels
         private ObservableCollection<BookViewModel> _books;
 
         private string _toFind;
+        private int _featsCount;
         private FeatSearch _searchMode = FeatSearch.Name;
         #endregion
         #region Properties
+        public MainViewModel Root => _root;
         public FeatViewModel SelectedFeat
         {
             get
@@ -125,6 +127,16 @@ namespace AlphaCodex.ViewModels
                     _books = new ObservableCollection<BookViewModel>();
                 }
                 return _books;
+            }
+        }
+        public int FeatsCount
+        {
+            get { return _featsCount; }
+            set
+            {
+                if (value == _featsCount) return;
+                _featsCount = value;
+                base.OnPropertyChanged("FeatsCount");
             }
         }
 
@@ -352,6 +364,7 @@ namespace AlphaCodex.ViewModels
                 Subtypes.Add(newItem);
             }
             SearchMode = FeatSearch.Name;
+            FeatsCount = Feats.Where(feat => feat.Visibility == Visibility.Visible).Count();
         }
 
         #endregion
@@ -408,6 +421,15 @@ namespace AlphaCodex.ViewModels
                     if (feat.IsSelected)
                     {
                         SelectedFeat = feat;
+                    }
+                    break;
+                case "Visibility":
+                    if (feat.Visibility == Visibility.Visible)
+                    {
+                        FeatsCount++;
+                    } else
+                    {
+                        FeatsCount--;
                     }
                     break;
             }

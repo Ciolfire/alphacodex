@@ -11,7 +11,10 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <ListBox ItemsSource="{Binding Path=Subtypes}" Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,20,0,0" Background="{DynamicResource BackgroundColor2}" Style="{DynamicResource ListBoxStyleFeats}" BorderBrush="Black">
+        <ListBox ItemsSource="{Binding Path=Subtypes}" Grid.Row="0" Style="{DynamicResource ListBoxStyleFeats}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 Margin="0,20,0,0" 
+                 Background="{DynamicResource BackgroundColor2}" BorderBrush="Black">
         <ListBox.ItemsPanel>
             <ItemsPanelTemplate>
                 <WrapPanel Orientation="Horizontal"/>
@@ -38,11 +41,11 @@
     </ListBox>
     <StackPanel Grid.Row="1" Orientation="Horizontal">
         <Button Command="{Binding ActivateAllSubtypesCommand}"
-                Width="255" Cursor="Hand"
-                Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BorderColor}">Select All</Button>
+                Width="255" Cursor="Hand" BorderThickness="1,0"
+                Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BorderColor}" BorderBrush="Black">Select All</Button>
         <Button Command="{Binding DeactivateAllSubtypesCommand}"
-                Width="255" Cursor="Hand"
-                Background="{DynamicResource BorderColor}" Foreground="{DynamicResource BackgroundColor}">Deselect All</Button>
+                Width="255" Cursor="Hand" BorderThickness="1,0"
+                Background="{DynamicResource BorderColor}" Foreground="{DynamicResource BackgroundColor}" BorderBrush="Black">Deselect All</Button>
     </StackPanel>
 </Grid>
 </UserControl>

@@ -112,6 +112,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Sources\Feats\Views\Subviews\FavoritesMenuView.xaml.cs">
+      <DependentUpon>FavoritesMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sources\Player\Events\ActionEventArgs.cs" />
     <Compile Include="Sources\Player\Views\Subviews\FavoriteGroups.xaml.cs">
       <DependentUpon>FavoriteGroups.xaml</DependentUpon>
     </Compile>
@@ -190,6 +194,10 @@
       <DependentUpon>FeatsView.xaml</DependentUpon>
     </Compile>
     <Page Include="CodexDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sources\Feats\Views\Subviews\FavoritesMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -323,25 +331,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="data\pictures\214d5e_5481850.jpg" />
-    <Resource Include="data\pictures\774px-Counterspell_%28art%29.jpg" />
-    <Resource Include="data\pictures\a5aa25ae1ae52e1e2e729e94ad141480.jpg" />
-    <Resource Include="data\pictures\background.jpg" />
-    <Resource Include="data\pictures\bard-monk.jpg" />
     <Resource Include="data\pictures\classes\priest.jpg" />
-    <Resource Include="data\pictures\codex.jpg" />
-    <Resource Include="data\pictures\craft.jpg" />
-    <Resource Include="data\pictures\Darktree.jpg" />
-    <Resource Include="data\pictures\Duel__by_Safana.jpg" />
-    <Resource Include="data\pictures\D_30d924_5458239.jpg" />
-    <Resource Include="data\pictures\elf.jpg" />
-    <Resource Include="data\pictures\librarian.jpg" />
-    <Resource Include="data\pictures\Oxan_09.jpg" />
-    <Resource Include="data\pictures\survival.jpg" />
-    <Resource Include="data\pictures\veum-1432587977-222260-full.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="data\pictures\library.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
@@ -819,6 +809,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="data\pictures\UI\feats\subtype\variousbonus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="data\pictures\UI\edit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\System.Data.SQLite.Core.1.0.99.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('packages\System.Data.SQLite.Core.1.0.99.0\build\net451\System.Data.SQLite.Core.targets')" />

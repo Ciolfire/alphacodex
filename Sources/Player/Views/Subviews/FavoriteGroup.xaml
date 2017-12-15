@@ -8,16 +8,23 @@
              mc:Ignorable="d">
     <StackPanel VerticalAlignment="Top" Width="220" Margin="5" Background="#FF230F0F" HorizontalAlignment="Left">
         <StackPanel Height="200" MaxHeight="200">
-            <TextBlock Visibility="{Binding Path=Name, Converter={tools:NullToVisibilityConverter}}"
-                       Text="{Binding Path=Name}" TextAlignment="Center" 
-                       FontFamily="{DynamicResource MainFont}" FontWeight="Bold" FontSize="18"
-                       Foreground="#E5FFF1B4"/>
+            <StackPanel Visibility="{Binding Path=Name, Converter={tools:NullToVisibilityConverter}}" Orientation="Horizontal">
+                <TextBox Text="{Binding Path=Name}" TextAlignment="Center"
+                         Style="{DynamicResource TextBoxStyleSearch}"
+                           Width="200"
+                           FontFamily="{DynamicResource MainFont}" FontWeight="Bold" FontSize="18"
+                           Foreground="{DynamicResource BackgroundColor}" Background="{x:Null}" SelectionBrush="{DynamicResource BorderColor}" BorderBrush="{x:Null}" CaretBrush="{DynamicResource BackgroundColor}"/>
+                <Button Command="{Binding Path=ChangeGroupNameCommand}"
+                        Width="20" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#FFE20F0F">
+                    <Image Source="/AlphaCodex;component/data/pictures/UI/edit.png"/>
+                </Button>
+            </StackPanel>
             <ListBox ItemsSource="{Binding Path=Favorites}"
                      Style="{DynamicResource ListBoxStyleFeats}"
                      MinHeight="179" MaxHeight="200"
                      SelectionMode="Multiple"
                      ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                     Background="{DynamicResource BackgroundColor2}">
+                     Background="{DynamicResource BackgroundColor2}" BorderBrush="Black">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <local:FavoriteView/>
@@ -26,8 +33,8 @@
             </ListBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-        <Button Background="#FF6E0000" Foreground="White">Delete</Button>
-        <Button Background="#FF033504" Foreground="White">Duplicate</Button>
+            <Button Background="#FF6E0000" Foreground="White" Command="{Binding Path=DeleteCommand}">Delete</Button>
+            <Button Background="#FF033504" Foreground="White" Command="{Binding Path=DuplicateCommand}">Duplicate</Button>
         </StackPanel>
     </StackPanel>
 </UserControl>

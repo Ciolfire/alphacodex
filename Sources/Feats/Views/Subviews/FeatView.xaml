@@ -8,7 +8,7 @@
     <UserControl.Resources>
         <Style BasedOn="{StaticResource links}" TargetType="{x:Type Hyperlink}"/>
     </UserControl.Resources>
-    <Border Name="test" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Border Name="FeatBox" HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid DataContext="{Binding Path=SelectedFeat, NotifyOnTargetUpdated=True}"
           TargetUpdated="FormatBindingData">
             <Border BorderThickness="2"

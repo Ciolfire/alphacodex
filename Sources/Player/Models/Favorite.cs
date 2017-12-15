@@ -1,5 +1,8 @@
-﻿using System.Data.SQLite;
+﻿using AlphaCodex.ViewModels;
+using System.Data.SQLite;
 using System.Linq;
+using System;
+using AlphaCodex.Data;
 
 namespace AlphaCodex
 {
@@ -10,7 +13,7 @@ namespace AlphaCodex
 
         #region Properties
         public int Id { get; set; }
-        public string Group { get; set; }
+        public int Group { get; set; }
         public string Type { get; set; }
         public string Name { get; set; }
         #endregion
@@ -19,9 +22,24 @@ namespace AlphaCodex
         public Favorite(SQLiteDataReader reader)
         {
             Id = (int)(long)reader["id_favorite"];
-            Group = reader["name"] as string;
+            Group = (int)(long)reader["id_group"];
             Type = reader["type"] as string;
             Name = string.Empty;
+        }
+
+        public Favorite(FeatViewModel feat, int group=0)
+        {
+            Id = feat.Id;
+            Group = group;
+            Type = "feat";
+            Name = feat.Name;
+        }
+
+        internal bool Save()
+        {
+            DatabaseAccess da = new DatabaseAccess();
+
+            return da.SaveFavorite(this);
         }
 
         //public Favorite(int id, string type)

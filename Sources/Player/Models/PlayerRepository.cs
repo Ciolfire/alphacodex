@@ -11,7 +11,7 @@ namespace AlphaCodex.Models
     {
         #region Fields
         private Player _player;
-        private List<FavoriteGroup> _favoriteGroups = new List<FavoriteGroup>();
+        private List<FavoriteGroup> _favoriteGroups;
 
         #endregion
         #region Properties
@@ -31,7 +31,8 @@ namespace AlphaCodex.Models
             DatabaseAccess da = new DatabaseAccess();
 
             _player = da.GetPlayer();
-            InitializeFavoriteGroups(da.GetFavorites(_player));
+            _favoriteGroups = da.GetFavoriteGroups(_player);
+            AssignFavoritesToGroups(da.GetFavorites(_player));
         }
 
         #region Methods
@@ -39,14 +40,14 @@ namespace AlphaCodex.Models
         /// Sort the favorites by group
         /// </summary>
         /// <param name="favorites"></param>
-        private void InitializeFavoriteGroups(List<Favorite> favorites)
+        private void AssignFavoritesToGroups(List<Favorite> favorites)
         {
             if (favorites == null) return;
             var start = DateTime.Now;
             FavoriteGroup group;
             foreach (Favorite favorite in favorites)
             {
-                group = _favoriteGroups.SingleOrDefault(item => item.Name == favorite.Group);
+                group = _favoriteGroups.SingleOrDefault(item => item.Id == favorite.Group);
                 if (group == null)
                 {
                     _favoriteGroups.Add(new FavoriteGroup(favorite));
@@ -74,6 +75,11 @@ namespace AlphaCodex.Models
                     }
                 }
             }
+        }
+
+        internal void SaveFavorite(Favorite favorite)
+        {
+            _favoriteGroups.Single(group => group.Id == favorite.Group).Add(favorite);
         }
         #endregion
     }

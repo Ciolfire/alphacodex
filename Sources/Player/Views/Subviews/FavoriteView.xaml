@@ -14,6 +14,6 @@
                    Foreground="{DynamicResource TitleColor}" Background="{DynamicResource BackgroundColor}"
                    ToolTip="{Binding Path=DisplayName}" 
                    Margin="1,1,0,1" Padding="1"/>
-        <Button Width="19" Margin="0,1,1,1" Background="#FF650A0A" Command="{Binding Path=NavigateCommand}">-</Button>
+        <Button Width="19" Margin="0,1,1,1" Background="#FF650A0A" Command="{Binding Path=NavigateCommand}" Foreground="{DynamicResource BackgroundColor}">&#x2794;</Button>
     </StackPanel>
 </UserControl>

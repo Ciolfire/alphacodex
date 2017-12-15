@@ -18,6 +18,7 @@ namespace AlphaCodex.ViewModels
         private bool _BookIsActivated = true;
         private bool _FitSearch = true;
         private bool _isSelected = false;
+        private Visibility _visibility;
 
         private ObservableCollection<LinkViewModel> _prerequisites = new ObservableCollection<LinkViewModel>();
         private ObservableCollection<LinkViewModel> _children = new ObservableCollection<LinkViewModel>();
@@ -223,66 +224,54 @@ namespace AlphaCodex.ViewModels
         public bool FitSearch
         {
             get
-            {
-                return _FitSearch;
-            }
+            { return _FitSearch; }
             set
             {
                 if (value == _FitSearch) return;
                 _FitSearch = value;
-                base.OnPropertyChanged("Visibility");
+                SetVisibility();
             }
         }
         public bool TypeIsActivated
         {
             get
-            {
-                return _TypeIsActivated;
-            }
+            { return _TypeIsActivated; }
             set
             {
                 if (value == _TypeIsActivated) return;
                 _TypeIsActivated = value;
-                base.OnPropertyChanged("Visibility");
+                SetVisibility();
             }
         }
         public bool BookIsActivated
         {
-            get {
-                return _BookIsActivated;
-            }
+            get { return _BookIsActivated; }
             set
             {
                 if (value == _BookIsActivated) return;
                 _BookIsActivated = value;
-                base.OnPropertyChanged("Visibility");
+                SetVisibility();
             }
         }
         public bool SubtypeIsActivated
         {
-            get {
-                return _SubtypeIsActivated;
-            }
+            get { return _SubtypeIsActivated; }
             set
             {
                 if (value == _SubtypeIsActivated) return;
                 _SubtypeIsActivated = value;
-                base.OnPropertyChanged("Visibility");
+                SetVisibility();
             }
         }
 
         public Visibility Visibility
         {
-            get
+            get { return _visibility; }
+            set
             {
-                if (IsCurrent 
-                    && TypeIsActivated 
-                    && SubtypeIsActivated 
-                    && FitSearch
-                    && BookIsActivated)
-                    return Visibility.Visible;
-                else
-                    return Visibility.Collapsed;
+                if (value == _visibility) return;
+                _visibility = value;
+                base.OnPropertyChanged("Visibility");
             }
         }
         #endregion
@@ -330,6 +319,7 @@ namespace AlphaCodex.ViewModels
                 CurrentFeat = new LinkViewModel(feat.CurrentFeat);
             }
             SetDisplayName();
+            SetVisibility();
         }
         #endregion
 
@@ -343,6 +333,18 @@ namespace AlphaCodex.ViewModels
                 DisplayName += ", " + _feat.TypeExtra.Name;
             }
             DisplayName += "]";
+        }
+
+        private void SetVisibility()
+        {
+            if (IsCurrent
+                        && TypeIsActivated
+                        && SubtypeIsActivated
+                        && FitSearch
+                        && BookIsActivated)
+                Visibility = Visibility.Visible;
+            else
+                Visibility = Visibility.Collapsed;
         }
 
         public override string ToString() => _feat.ToString();

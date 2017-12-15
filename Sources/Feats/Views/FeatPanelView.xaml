@@ -77,9 +77,17 @@
                 </TabControl>
             </Grid>
         </Expander>
-        <Border Background="#FF211B12">
-            <local:FeatsView/>
-        </Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Background="#FF211B12">
+                <local:FeatsView/>
+            </Border>
+            <!--<TextBlock Text="test" Grid.Row="1"/>-->
+            <TextBlock Grid.Row="1" Foreground="{DynamicResource BackgroundColor}" Text="{Binding Path=FeatsCount, StringFormat={}{0} feats found}" TextAlignment="Center"/>
+        </Grid>
         <Border DockPanel.Dock="Right">
             <Border.Background>
                 <ImageBrush ImageSource="/AlphaCodex;component/data/pictures/UI/feats/central_back.jpg"/>
@@ -93,6 +101,9 @@
                           Template="{DynamicResource ScrollViewerControlTemplate}">
                     <local:FeatView x:Name="FeatView"/>
                 </ScrollViewer>
+                <Border Grid.Column="2" Panel.ZIndex="10" Margin="0,0,0,-20" Cursor="Hand" Width="{Binding ElementName=FavoriteButton, Path=ActualWidth}" MaxHeight="200" VerticalAlignment="Bottom" HorizontalAlignment="Right" Visibility="{Binding ElementName=GroupsView, Path=Visibility}" BorderBrush="{DynamicResource BackgroundColor2}" Background="{DynamicResource BackgroundColor2}" BorderThickness="1">
+                    <local:FavoritesMenuView x:Name="GroupsView" Visibility="Collapsed"/>
+                </Border>
                 <Grid Grid.Row="1" Height="20">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
@@ -108,7 +119,7 @@
                             <TextBlock>Copy as Picture</TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Grid.Column="1" Command="{Binding CopyAsTextCommand}"
+                    <Button Grid.Column="1" Command="{Binding Path=CopyAsTextCommand}"
                             Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BorderColor}"
                             Cursor="Hand">
                         <StackPanel Orientation="Horizontal">
@@ -116,11 +127,11 @@
                             <TextBlock>Copy as Text</TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Grid.Column="2" Command="{Binding DeactivateAllTypesCommand}"
+                    <Button x:Name="FavoriteButton" Grid.Column="2"
                             Background="{DynamicResource BorderColor}" Foreground="{DynamicResource BackgroundColor}"
-                            Cursor="Hand">
+                            Cursor="Hand" Click="FavoriteButton_Click">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="/AlphaCodex;component/data/pictures/UI/favorite_off.png"/>
+                            <Image Source="/AlphaCodex;component/data/pictures/UI/favorite_on.png"/>
                             <TextBlock>Add Favorite...</TextBlock>
                         </StackPanel>
                     </Button>

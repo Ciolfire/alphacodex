@@ -48,6 +48,19 @@ namespace AlphaCodex.Data
             return result;
         }
 
+        private int ExecuteNonQuery(SQLiteCommand command)
+        {
+            int result;
+            using (SQLiteConnection connDB = new SQLiteConnection(ConnectionString))
+            {
+                connDB.Open();
+                command.Connection = connDB;
+                result = command.ExecuteNonQuery();
+                connDB.Close();
+            }
+            return result;
+        }
+
         /// <summary>
         /// Retrieve a table from the DB
         /// </summary>

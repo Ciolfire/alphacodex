@@ -53,28 +53,28 @@
         </ListBox>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Button Command="{Binding SelectSpecificBooksCommand}" CommandParameter="FR" 
-                    Width="102" Cursor="Hand"
-                    Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BorderColor}">Forgotten Realms</Button>
+                    Width="102" Cursor="Hand" BorderThickness="1,1,1,0"
+                    Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BorderColor}" BorderBrush="Black">Forgotten Realms</Button>
             <Button Command="{Binding SelectSpecificBooksCommand}" CommandParameter="EB" 
-                    Width="102" Cursor="Hand"
-                    Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BorderColor}">Eberron</Button>
+                    Width="102" Cursor="Hand" BorderThickness="1,1,1,0"
+                    Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BorderColor}" BorderBrush="Black">Eberron</Button>
             <Button Command="{Binding SelectSpecificBooksCommand}" CommandParameter="DL" 
-                    Width="102" Cursor="Hand"
-                    Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BorderColor}">Dragonlance</Button>
+                    Width="102" Cursor="Hand" BorderThickness="1,1,1,0"
+                    Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BorderColor}" BorderBrush="Black">Dragonlance</Button>
             <Button Command="{Binding SelectSpecificBooksCommand}" CommandParameter="other" 
-                    Width="102" Cursor="Hand"
-                    Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BorderColor}">Others</Button>
+                    Width="102" Cursor="Hand" BorderThickness="1,1,1,0"
+                    Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BorderColor}" BorderBrush="Black">Others</Button>
             <Button Command="{Binding SelectSpecificBooksCommand}" CommandParameter="core"
-                    Width="102" Cursor="Hand"
-                    Background="{DynamicResource BorderColor}" Foreground="{DynamicResource BackgroundColor}">Core only</Button>
+                    Width="102" Cursor="Hand" BorderThickness="1,1,1,0"
+                    Background="{DynamicResource BorderColor}" Foreground="{DynamicResource BackgroundColor}" BorderBrush="Black">Core only</Button>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <Button Command="{Binding ActivateAllBooksCommand}" 
-                    Width="255" Cursor="Hand"
-                    Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BorderColor}">Select All</Button>
+                    Width="255" Cursor="Hand" BorderThickness="1,1,1,0"
+                    Background="{DynamicResource BackgroundColor}" Foreground="{DynamicResource BorderColor}" BorderBrush="Black">Select All</Button>
             <Button Command="{Binding DeactivateAllBooksCommand}"
-                    Width="255" Cursor="Hand"
-                    Background="{DynamicResource BorderColor}" Foreground="{DynamicResource BackgroundColor}">Deselect All</Button>
+                    Width="255" Cursor="Hand" BorderThickness="1,1,1,0"
+                    Background="{DynamicResource BorderColor}" Foreground="{DynamicResource BackgroundColor}" BorderBrush="Black">Deselect All</Button>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Data.SQLite;
 
 namespace AlphaCodex
 {
     public class FavoriteGroup
     {
         #region Properties
+        public int Id { get; set; }
         public string Name { get; set; }
         public List<Favorite> Favorites { get; set; }
         #endregion Properties
@@ -15,9 +17,16 @@ namespace AlphaCodex
             Favorites = new List<Favorite>();
         }
 
+        public FavoriteGroup(SQLiteDataReader reader)
+        {
+            Id = (int)(long)reader["id"];
+            Name = reader["name"] as string;
+            Favorites = new List<Favorite>();
+        }
+
         public FavoriteGroup(Favorite favorite)
         {
-            Name = favorite.Group;
+            Id = favorite.Group;
             Favorites = new List<Favorite>
             {
                 favorite
