@@ -15,7 +15,7 @@
                 Background="#E5FFF1B4" BorderBrush="#FF150D09"
                 VerticalAlignment="Top" HorizontalAlignment="Center">
                 <StackPanel Margin="5">
-                    <Image Visibility="{Binding Path=IsCurrent, Converter={tools:InvertedBooleanToVisibilityConverter}}"
+                    <Image Visibility="{Binding Path=IsCurrent, Converter={tools:BooleanToVisibilityConverter}, ConverterParameter=inverted}"
                        Source="/AlphaCodex;component/data/pictures/UI/old.png"
                        Height="160" Width="158"/>
                     <TextBlock Text="{Binding Path=DisplayName}" TextAlignment="Center" TextWrapping="WrapWithOverflow"
@@ -73,7 +73,7 @@
                         <TextBlock Text="Previously appeared in:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
                         <TextBlock x:Name="History" FontFamily="{StaticResource MainFont}" FontSize="18" TextWrapping="Wrap"/>
                     </StackPanel>
-                    <StackPanel Visibility="{Binding Path=IsCurrent, Converter={tools:InvertedBooleanToVisibilityConverter}}" Margin="10,0,10,10">
+                    <StackPanel Visibility="{Binding Path=IsCurrent, Converter={tools:BooleanToVisibilityConverter}, ConverterParameter=inverted}" Margin="10,0,10,10">
                         <TextBlock Text="Revised in:" Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource MainFont}" FontSize="18" FontWeight="Bold"/>
                         <TextBlock x:Name="CurrentFeat" FontFamily="{StaticResource MainFont}" FontSize="18" TextWrapping="Wrap"/>
                     </StackPanel>

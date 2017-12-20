@@ -6,12 +6,24 @@ namespace AlphaCodex.ViewModels
 {
     public class ViewModelBase : INotifyPropertyChanged
     {
-        #region Properties
-        public string DisplayName { get; set; }
+        #region Fields
+        private string _displayName;
         #endregion
+        #region Properties
+        public string DisplayName {
+            get { return _displayName; }
+            set
+            {
+                if (value == _displayName) return;
+                _displayName = value;
+                OnPropertyChanged("DisplayName");
+            }
 
-        #region Events
-        protected virtual void OnPropertyChanged(string propertyName)
+        }
+    #endregion
+
+    #region Events
+    protected virtual void OnPropertyChanged(string propertyName)
         {
             this.VerifyPropertyName(propertyName);
             PropertyChangedEventHandler handler = PropertyChanged;

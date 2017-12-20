@@ -15,6 +15,7 @@ namespace AlphaCodex.ViewModels
         private Feat _feat;
         private bool _SubtypeIsActivated = true;
         private bool _TypeIsActivated = true;
+        private bool _TypeExtraIsActivated = false;
         private bool _BookIsActivated = true;
         private bool _FitSearch = true;
         private bool _isSelected = false;
@@ -147,7 +148,6 @@ namespace AlphaCodex.ViewModels
                 base.OnPropertyChanged("IsCurrent");
             }
         }
-
         public FeatType Type
         {
             get { return _feat.Type; }
@@ -156,6 +156,16 @@ namespace AlphaCodex.ViewModels
                 if (value == _feat.Type) return;
                 _feat.Type = value;
                 base.OnPropertyChanged("Type");
+            }
+        }
+        public FeatType TypeExtra
+        {
+            get { return _feat.TypeExtra; }
+            set
+            {
+                if (value == _feat.TypeExtra) return;
+                _feat.TypeExtra = value;
+                base.OnPropertyChanged("TypeExtra");
             }
         }
         public FeatSubtype Subtype
@@ -243,6 +253,17 @@ namespace AlphaCodex.ViewModels
                 SetVisibility();
             }
         }
+        public bool TypeExtraIsActivated
+        {
+            get
+            { return _TypeExtraIsActivated; }
+            set
+            {
+                if (value == _TypeExtraIsActivated) return;
+                _TypeExtraIsActivated = value;
+                SetVisibility();
+            }
+        }
         public bool BookIsActivated
         {
             get { return _BookIsActivated; }
@@ -318,6 +339,8 @@ namespace AlphaCodex.ViewModels
             {
                 CurrentFeat = new LinkViewModel(feat.CurrentFeat);
             }
+            if (feat.TypeExtra != null)
+                TypeExtraIsActivated = true;
             SetDisplayName();
             SetVisibility();
         }
@@ -338,7 +361,7 @@ namespace AlphaCodex.ViewModels
         private void SetVisibility()
         {
             if (IsCurrent
-                        && TypeIsActivated
+                        && (TypeIsActivated || TypeExtraIsActivated)
                         && SubtypeIsActivated
                         && FitSearch
                         && BookIsActivated)

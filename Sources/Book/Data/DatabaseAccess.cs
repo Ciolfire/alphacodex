@@ -23,9 +23,9 @@ namespace AlphaCodex.Data
         public List<Book> GetBooks(string category)
         {
             SQLiteCommand command = new SQLiteCommand(
-                "SELECT book.*, CASE WHEN book.id BETWEEN 1 AND 3 THEN 0 ELSE 1 END AS Ordering " +
+                "SELECT book.*, CASE WHEN book.id BETWEEN 1 AND 3 THEN 0 ELSE 1 END AS Ordering, COUNT(feat.id) as number " +
                 "FROM book LEFT JOIN " + category + " ON book.id = " + category + ".book_id" +
-                " GROUP BY book.id ORDER BY Ordering, book.name");
+                " GROUP BY book.id HAVING number > 0 ORDER BY Ordering, book.name");
 
             return ExecuteQuery(command, BooksHandler) as List<Book>;
         }

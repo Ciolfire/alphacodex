@@ -178,7 +178,7 @@
     <Compile Include="Sources\Player\Views\Subviews\FavoriteView.xaml.cs">
       <DependentUpon>FavoriteView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Sources\Tools\Converters\InvertedBooleanToVisibilityConverter.cs" />
+    <Compile Include="Sources\Tools\Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Sources\Tools\Converters\FeatSearchToBoolConverter.cs" />
     <Compile Include="Sources\Tools\Converters\CollectionToVisibilityConverter.cs" />
     <Compile Include="Sources\Tools\JadeTools.cs" />
@@ -812,6 +812,23 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="data\pictures\UI\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="data\pictures\books\DragonsOfEberron.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="data\pictures\UI\thumbnails\books\DragonsOfEberron.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="data\pictures\books\CityOfStormreach.jpg" />
+    <Resource Include="data\pictures\books\ElderEvils.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="data\pictures\UI\thumbnails\books\CityOfStormreach.jpg" />
+    <Resource Include="data\pictures\UI\thumbnails\books\ElderEvils.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="data\pictures\UI\feats\type\deformity.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\System.Data.SQLite.Core.1.0.99.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('packages\System.Data.SQLite.Core.1.0.99.0\build\net451\System.Data.SQLite.Core.targets')" />

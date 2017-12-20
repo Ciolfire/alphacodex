@@ -25,6 +25,7 @@
                 <vw:FeatPanelView DataContext="{Binding Path=FeatsVM}"/>
             </TabItem>
         </TabControl>
+        <!--<Button Height="50" Width="50" Click="CreatePrerequisiteBtn_Click" Content="CLICK" />-->
         <!--<Border x:Name="Welcome" Panel.ZIndex="1" BorderBrush="#FF392F21" BorderThickness="5" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
             <DockPanel Height="150" Width="300">
                 <Label FontFamily="/AlphaCodex;component/data/#Celestia Antiqua" FontSize="30" Height="50" DockPanel.Dock="Top" Content="Please choose a name" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#7FF6E4BC"/>

@@ -372,6 +372,7 @@ namespace AlphaCodex.ViewModels
 
         private void SearchUpdated(string value)
         {
+            if (String.IsNullOrWhiteSpace(value)) return;
             bool contains;
             foreach (FeatViewModel feat in Feats)
             {
@@ -384,7 +385,7 @@ namespace AlphaCodex.ViewModels
                         contains = feat.Benefit.IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0;
                         break;
                     case FeatSearch.Prerequisite:
-                        if (String.IsNullOrWhiteSpace(feat.PrerequisitesString) && !String.IsNullOrWhiteSpace(value))
+                        if (String.IsNullOrWhiteSpace(feat.PrerequisitesString))
                         {
                             contains = false;
                         }
@@ -447,6 +448,10 @@ namespace AlphaCodex.ViewModels
                         if (feat.Type.Id == type.Id)
                         {
                             feat.TypeIsActivated = !type.IsDisabled;
+                        }
+                        else if (feat.TypeExtra != null && feat.TypeExtra.Id == type.Id)
+                        {
+                            feat.TypeExtraIsActivated = !type.IsDisabled;
                         }
                     }
                     break;

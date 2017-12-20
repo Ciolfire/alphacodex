@@ -89,11 +89,11 @@ namespace AlphaCodex.Data
         /// <summary>
         /// Update a favorite group name
         /// </summary>
-        public bool UpdateFavoriteGroup(FavoriteGroup group)
+        public bool UpdateFavoriteGroup(FavoriteGroup group, string newName)
         {
             SQLiteCommand command = new SQLiteCommand("UPDATE player_favorite_group SET name = @name WHERE id = @id AND name != @name");
             command.Parameters.AddWithValue("@id", group.Id);
-            command.Parameters.AddWithValue("@name", group.Name);
+            command.Parameters.AddWithValue("@name", newName);
             if (ExecuteNonQuery(command) == 0) return false;
             return true;
         }

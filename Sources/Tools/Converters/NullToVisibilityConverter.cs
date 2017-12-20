@@ -21,13 +21,31 @@ namespace AlphaCodex.Tools
         #region IValueConverter Members
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null && !string.IsNullOrEmpty(value as string))
+            if (parameter != null)
             {
-                return Visibility.Visible;
+                if (parameter.ToString() == "inverted")
+                {
+                    if (value != null && !string.IsNullOrEmpty(value as string))
+                    {
+                        return Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        return Visibility.Visible;
+                    }
+                }
+                else return null;
             }
             else
             {
-                return Visibility.Collapsed;
+                if (value != null && !string.IsNullOrEmpty(value as string))
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Collapsed;
+                }
             }
         }
 

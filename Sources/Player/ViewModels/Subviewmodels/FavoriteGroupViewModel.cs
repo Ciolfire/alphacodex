@@ -5,8 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -17,8 +15,24 @@ namespace AlphaCodex.ViewModels
         #region Fields
         private FavoriteGroup _favoriteGroup;
         private ObservableCollection<LinkViewModel> _favorites = new ObservableCollection<LinkViewModel>();
+        private bool _isNameChanged = false;
         #endregion Fields
         #region Properties
+        public new string DisplayName
+        {
+            get { return base.DisplayName; }
+            set
+            {
+                if (value == base.DisplayName) return;
+                base.DisplayName = value;
+                IsNameChanged = true;
+                if (base.DisplayName == Name)
+                    IsNameChanged = false;
+                OnPropertyChanged("DisplayName");
+            }
+
+        }
+
         public string Name
         {
             get{ return _favoriteGroup.Name; }
@@ -39,6 +53,18 @@ namespace AlphaCodex.ViewModels
                 base.OnPropertyChanged("Id");
             }
         }
+
+        public bool IsNameChanged
+        {
+            get { return _isNameChanged; }
+            set
+            {
+                if (value == _isNameChanged) return;
+                _isNameChanged = value;
+                OnPropertyChanged("IsNameChanged");
+            }
+        }
+
         public ObservableCollection<LinkViewModel> Favorites
         {
             get { return _favorites; }
@@ -72,9 +98,12 @@ namespace AlphaCodex.ViewModels
         {
             DatabaseAccess da = new DatabaseAccess();
 
-            if (!da.UpdateFavoriteGroup(this._favoriteGroup)) return;
+            if (!da.UpdateFavoriteGroup(this._favoriteGroup, DisplayName)) return;
+            string oldName = Name;
+            Name = DisplayName;
             base.OnPropertyChanged("Name");
-            MessageBox.Show("Name changed");
+            IsNameChanged = false;
+            MessageBox.Show("Name changed", oldName + " ➞ " + Name, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         RelayCommand _deleteCommand;
@@ -91,7 +120,14 @@ namespace AlphaCodex.ViewModels
         }
         private void Delete()
         {
-            OnActionTaken("delete");
+            if (MessageBox.Show("Do you really want to delete this group ?\nYou will not be able to recover it", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            {
+
+            }
+            else
+            {
+                OnActionTaken("delete");
+            }
         }
 
         RelayCommand _duplicateCommand;

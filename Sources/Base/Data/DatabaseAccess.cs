@@ -21,8 +21,7 @@ namespace AlphaCodex.Data
         #region Constructors
         public DatabaseAccess()
         {
-            string path;
-            path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
+            string path = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
             ConnectionString = "Data Source=" + path + @"\Data\LyndisLibrary.sqlite;Version=3;";
         }
         #endregion
