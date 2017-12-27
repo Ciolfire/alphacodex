@@ -17,7 +17,7 @@
         <Border Grid.Row="0" BorderBrush="{DynamicResource BorderColor}" BorderThickness="0,0,2,0">
             <ScrollViewer VerticalScrollBarVisibility="Auto"
                       Template="{DynamicResource ScrollViewerControlTemplate}">
-                <local:FavoriteGroups Background="#3FBC9D72"/>
+                <local:FavoriteGroupsView Background="#3FBC9D72"/>
             </ScrollViewer>
         </Border>
     </Grid>

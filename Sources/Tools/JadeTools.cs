@@ -38,9 +38,6 @@ namespace AlphaCodex.Tools
             linkH.Inlines.Add(linkVM.DisplayName);
             linkH.DataContext = linkVM;
             linkH.Command = linkVM.NavigateCommand;
-            //link.TargetName = prerequisite.ParentId.ToString();
-            //link.Tag = "feat";
-            //link.Click += Link_Click;
             return linkH;
         }
 

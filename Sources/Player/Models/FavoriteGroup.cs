@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using AlphaCodex.Data;
+using System.Collections.Generic;
 using System.Data.SQLite;
 
 namespace AlphaCodex
@@ -27,6 +28,7 @@ namespace AlphaCodex
         public FavoriteGroup(Favorite favorite)
         {
             Id = favorite.Group;
+            Name = "Group id: " + Id.ToString();
             Favorites = new List<Favorite>
             {
                 favorite
@@ -40,6 +42,21 @@ namespace AlphaCodex
             {
                 Favorites.Add(favorite);
             }
+        }
+        public bool Save()
+        {
+            DatabaseAccess da = new DatabaseAccess();
+            int id = da.NewFavoriteGroup(Name);
+            if (id == -1) return false;
+            Id = id;
+            return true;
+        }
+
+        internal void Delete()
+        {
+            DatabaseAccess da = new DatabaseAccess();
+
+            da.DeleteFavoriteGroup(this);
         }
         #endregion Methods
     }

@@ -18,9 +18,9 @@ namespace AlphaCodex.Views
     /// <summary>
     /// Logique d'interaction pour FavoriteGroup.xaml
     /// </summary>
-    public partial class FavoriteGroup : UserControl
+    public partial class FavoriteGroupsView : UserControl
     {
-        public FavoriteGroup()
+        public FavoriteGroupsView()
         {
             InitializeComponent();
         }

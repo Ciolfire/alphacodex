@@ -116,11 +116,11 @@
       <DependentUpon>FavoritesMenuView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sources\Player\Events\ActionEventArgs.cs" />
-    <Compile Include="Sources\Player\Views\Subviews\FavoriteGroups.xaml.cs">
-      <DependentUpon>FavoriteGroups.xaml</DependentUpon>
+    <Compile Include="Sources\Player\Views\Subviews\FavoriteGroupsView.xaml.cs">
+      <DependentUpon>FavoriteGroupsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Sources\Player\Views\Subviews\FavoriteGroup.xaml.cs">
-      <DependentUpon>FavoriteGroup.xaml</DependentUpon>
+    <Compile Include="Sources\Player\Views\Subviews\FavoriteGroupView.xaml.cs">
+      <DependentUpon>FavoriteGroupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="old\classes\Alignment.cs" />
     <Compile Include="old\classes\Ability.cs" />
@@ -178,9 +178,13 @@
     <Compile Include="Sources\Player\Views\Subviews\FavoriteView.xaml.cs">
       <DependentUpon>FavoriteView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Sources\Player\Views\Subviews\WelcomeScreenView.xaml.cs">
+      <DependentUpon>WelcomeScreenView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Sources\Tools\Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Sources\Tools\Converters\FeatSearchToBoolConverter.cs" />
     <Compile Include="Sources\Tools\Converters\CollectionToVisibilityConverter.cs" />
+    <Compile Include="Sources\Tools\Converters\StringToBoolConverter.cs" />
     <Compile Include="Sources\Tools\JadeTools.cs" />
     <Compile Include="Sources\Feats\ViewModels\Subviewmodels\FeatViewModel.cs" />
     <Compile Include="Sources\Tools\Converters\NullToVisibilityConverter.cs" />
@@ -201,11 +205,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sources\Player\Views\Subviews\FavoriteGroups.xaml">
+    <Page Include="Sources\Player\Views\Subviews\FavoriteGroupsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Sources\Player\Views\Subviews\FavoriteGroup.xaml">
+    <Page Include="Sources\Player\Views\Subviews\FavoriteGroupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -282,6 +286,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Sources\Player\Views\Subviews\FavoriteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sources\Player\Views\Subviews\WelcomeScreenView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

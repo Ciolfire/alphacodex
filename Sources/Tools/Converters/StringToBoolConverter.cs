@@ -1,0 +1,40 @@
+﻿using System;
+using System.Globalization;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Markup;
+
+namespace AlphaCodex.Tools
+{
+    [ValueConversion(typeof(string), typeof(bool))]
+    public class StringToBoolConverter : MarkupExtension, IValueConverter
+    {
+        private static StringToBoolConverter _converter = null;
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            if (_converter == null)
+            {
+                _converter = new StringToBoolConverter();
+            }
+            return _converter;
+        }
+        #region IValueConverter Members
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (string.IsNullOrWhiteSpace((string)value))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
+}

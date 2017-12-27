@@ -68,7 +68,7 @@ namespace AlphaCodex.Models
                     switch (favorite.Type)
                     {
                         case "feat":
-                            favorite.Name = main.Feats.GetFeats().Single(feat => feat.Id == favorite.Id).Name;
+                            favorite.Name = main.Feats.GetFeats().Single(feat => feat.Id == favorite.ParentId).Name;
                             break;
                         default:
                             break;

@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:AlphaCodex"
+    xmlns:tools="clr-namespace:AlphaCodex.Tools"
     xmlns:vw="clr-namespace:AlphaCodex.Views"
     mc:Ignorable="d" x:Name="Main_Window" x:Class="AlphaCodex.MainWindow"
     Title="Alpha Codex" Width="1360" Height="768" WindowStartupLocation="CenterScreen" MinHeight="768" >
@@ -26,13 +27,6 @@
             </TabItem>
         </TabControl>
         <!--<Button Height="50" Width="50" Click="CreatePrerequisiteBtn_Click" Content="CLICK" />-->
-        <!--<Border x:Name="Welcome" Panel.ZIndex="1" BorderBrush="#FF392F21" BorderThickness="5" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
-            <DockPanel Height="150" Width="300">
-                <Label FontFamily="/AlphaCodex;component/data/#Celestia Antiqua" FontSize="30" Height="50" DockPanel.Dock="Top" Content="Please choose a name" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#7FF6E4BC"/>
-                <TextBox x:Name="WelcomeTextBox" TextChanged="WelcomeTextBox_TextChanged" FontFamily="/AlphaCodex;component/data/#Celestia Antiqua" FontSize="30" Height="50" DockPanel.Dock="Top" Background="#7FD3B182" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                <Button x:Name="WelcomeButton" Click="WelcomeButton_Click" IsEnabled="False" FontFamily="/AlphaCodex;component/data/#Celestia Antiqua" FontSize="30" Height="50" DockPanel.Dock="Bottom" Content="Continue" Background="#BF473329" VerticalContentAlignment="Center" Foreground="#FF8B8B8B"/>
-            </DockPanel>
-        </Border>-->
 
         <!--<TabControl x:Name="menu" Height="auto" Width="auto" SelectedIndex="3" Style="{DynamicResource TabControlStyleMain}">
             <TabItem x:Name="homePanel" Header="Home" Style="{DynamicResource TabItemStyleMain}">
@@ -91,5 +85,6 @@
                 <Button x:Name="createPrerequisiteBtn" Content="Generate feats prerequisites" HorizontalAlignment="Left" VerticalAlignment="Top" Click="CreatePrerequisiteBtn_Click"/>
             </TabItem>--><!--
         </TabControl>-->
+        <vw:WelcomeScreenView DataContext="{Binding Path=PlayerVM}" Panel.ZIndex="1" Visibility="{Binding Path=Player.Name, Converter={tools:NullToVisibilityConverter}, ConverterParameter=inverted}"/>
     </Grid>
 </Window>

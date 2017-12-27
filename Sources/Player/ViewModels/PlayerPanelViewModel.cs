@@ -9,6 +9,7 @@ using AlphaCodex.Events;
 using AlphaCodex.Tools;
 using System.Windows.Input;
 using static AlphaCodex.ViewModels.MainViewModel;
+using System.Windows;
 
 namespace AlphaCodex.ViewModels
 {
@@ -59,9 +60,9 @@ namespace AlphaCodex.ViewModels
             foreach (FavoriteGroup group in repository.GetFavoriteGroups())
             {
                 FavoriteGroupViewModel newItem = new FavoriteGroupViewModel(group);
-                foreach (LinkViewModel link in newItem.Favorites)
+                foreach (FavoriteViewModel favorite in newItem.Favorites)
                 {
-                    link.LinkClicked += _root.LinkClickedEventHandler;
+                    favorite.LinkClicked += _root.LinkClickedEventHandler;
                 }
                 newItem.Action += ActionEventHandler;
                 FavoriteGroups.Add(newItem);
@@ -75,17 +76,25 @@ namespace AlphaCodex.ViewModels
             //System.Diagnostics.Debug.WriteLine(args.Action + group.Name);
             switch (args.Action)
             {
+                case "new":
+                    int count = 1;
+                    while (_favoriteGroups.Where(x => x.Name.Equals("New Group " + count.ToString()) == true).Count() > 0)
+                    {
+                        count++;
+                    }
+                    _favoriteGroups.Add(new FavoriteGroupViewModel("New Group " + count.ToString()));
+                    _favoriteGroups.Last().Action += ActionEventHandler;
+
+                    break;
                 case "delete":
-                    _favoriteGroups.Remove(group);
+                    group.DeleteGroup();
+                    group.Action -= ActionEventHandler;
+                   _favoriteGroups.Remove(group);
+                    break;
+                case "remove":
+                    group.RemoveFavorites();
                     break;
                 case "duplicate":
-                    FavoriteGroupViewModel newItem = new FavoriteGroupViewModel(group);
-                    foreach (LinkViewModel link in newItem.Favorites)
-                    {
-                       // link.LinkClicked += _root.LinkClickedEventHandler;
-                    }
-                    newItem.Action += ActionEventHandler;
-                    FavoriteGroups.Add(newItem);
                     break;
                 default:
                     break;

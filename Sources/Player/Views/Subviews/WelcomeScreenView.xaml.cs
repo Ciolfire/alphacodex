@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace AlphaCodex.Views
 {
     /// <summary>
-    /// Logique d'interaction pour FavoriteGroup.xaml
+    /// Logique d'interaction pour WelcomeScreenView.xaml
     /// </summary>
-    public partial class FavoriteGroups : UserControl
+    public partial class WelcomeScreenView : UserControl
     {
-        public FavoriteGroups()
+        public WelcomeScreenView()
         {
             InitializeComponent();
         }

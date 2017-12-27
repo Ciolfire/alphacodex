@@ -8,6 +8,17 @@ namespace AlphaCodex.Data
     public partial class DatabaseAccess
     {
         /// <summary>
+        /// Save a new player
+        /// </summary>
+        public bool SavePlayer(string name)
+        {
+            SQLiteCommand command = new SQLiteCommand("UPDATE player SET name = @name WHERE id = 1");
+            command.Parameters.AddWithValue("@name", name);
+            if (ExecuteNonQuery(command) == 0) return false;
+            return true;
+        }
+
+        /// <summary>
         /// Retrieve the player from the database
         /// </summary>
         public Player GetPlayer()
@@ -44,7 +55,7 @@ namespace AlphaCodex.Data
         }
 
         /// <summary>
-        /// Handle the feats data fetched from the database
+        /// Handle the favorites data fetched from the database
         /// </summary>
         /// <returns></returns>
         private Object FavoritesHandler()
@@ -64,14 +75,14 @@ namespace AlphaCodex.Data
         /// </summary>
         public List<FavoriteGroup> GetFavoriteGroups(Player player)
         {
-            SQLiteCommand command = new SQLiteCommand("SELECT grp.* FROM player_favorite AS fav LEFT JOIN player_favorite_group AS grp ON fav.id_group = grp.id WHERE id_player = @id GROUP BY grp.id ORDER BY[name]");
+            SQLiteCommand command = new SQLiteCommand("SELECT id,name FROM player_favorite_group WHERE player_id = @id OR player_id = 0 ORDER BY[name]");
             command.Parameters.AddWithValue("@id", player.Id);
 
             return ExecuteQuery(command, FavoriteGroupsHandler) as List<FavoriteGroup>;
         }
 
         /// <summary>
-        /// Handle the feats data fetched from the database
+        /// Handle the favorite groups data fetched from the database
         /// </summary>
         /// <returns></returns>
         private Object FavoriteGroupsHandler()
@@ -87,6 +98,26 @@ namespace AlphaCodex.Data
         }
 
         /// <summary>
+        /// Create a new favorite group
+        /// </summary>
+        internal int NewFavoriteGroup(string name)
+        {
+            SQLiteCommand command = new SQLiteCommand("INSERT INTO player_favorite_group (name, player_id) VALUES (@name, @id)");
+            command.Parameters.AddWithValue("@name", name);
+            command.Parameters.AddWithValue("@id", 1);
+            if (ExecuteNonQuery(command) == 0) return -1;
+            command = new SQLiteCommand("SELECT id FROM player_favorite_group WHERE name = @name");
+            command.Parameters.AddWithValue("@name", name);
+            return (int)ExecuteQuery(command, NewFavoriteGroupHandler);
+        }
+
+        private Object NewFavoriteGroupHandler()
+        {
+            reader.Read();
+            return (int)(long)reader["id"];
+        }
+
+        /// <summary>
         /// Update a favorite group name
         /// </summary>
         public bool UpdateFavoriteGroup(FavoriteGroup group, string newName)
@@ -98,13 +129,47 @@ namespace AlphaCodex.Data
             return true;
         }
 
-        public bool SaveFavorite(Favorite favorite)
+        /// <summary>
+        /// Remove a favorite group
+        /// </summary>
+        public bool DeleteFavoriteGroup(FavoriteGroup group)
         {
-            SQLiteCommand command = new SQLiteCommand("INSERT INTO player_favorite (id_player, type, id_favorite, id_group) VALUES(@player, @type, @id, @group)");
+            SQLiteCommand command = new SQLiteCommand("DELETE FROM player_favorite_group WHERE id = @id");
+            command.Parameters.AddWithValue("@id", group.Id);
+            if (ExecuteNonQuery(command) == 0) return false;
+            command.CommandText = "DELETE FROM player_favorite WHERE id_group = @id";
+            ExecuteNonQuery(command);
+            return true;
+        }
+
+        /// <summary>
+        /// Save a new favorite
+        /// </summary>
+        public int SaveFavorite(Favorite favorite)
+        {
+            SQLiteCommand command = new SQLiteCommand("INSERT INTO player_favorite (id_player, type, id_favorite, id_group) VALUES(@player, @type, @favorite, @group)");
             command.Parameters.AddWithValue("@player", 1);
             command.Parameters.AddWithValue("@type", favorite.Type);
-            command.Parameters.AddWithValue("@id", favorite.Id);
+            command.Parameters.AddWithValue("@favorite", favorite.ParentId);
             command.Parameters.AddWithValue("@group", favorite.Group);
+            if (ExecuteNonQuery(command) == 0) return -1;
+            command = new SQLiteCommand("select id FROM player_favorite ORDER BY id DESC LIMIT 1");
+            return (int)ExecuteQuery(command, NewFavoriteHandler);
+        }
+
+        private Object NewFavoriteHandler()
+        {
+            reader.Read();
+            return (int)(long)reader["id"];
+        }
+
+        /// <summary>
+        /// Remove a favorite
+        /// </summary>
+        public bool DeleteFavorite(int id)
+        {
+            SQLiteCommand command = new SQLiteCommand("DELETE FROM player_favorite WHERE id = @id");
+            command.Parameters.AddWithValue("@id", id);
             if (ExecuteNonQuery(command) == 0) return false;
             return true;
         }

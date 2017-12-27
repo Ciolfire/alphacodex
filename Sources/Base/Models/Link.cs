@@ -8,11 +8,15 @@ namespace AlphaCodex.Models
         #region Properties
         public int ParentId { get; set; }
         public string Type { get; set; }
-        public int LinkId { get; set; }
+        public int LinkId { get; set; } = -1;
         public string Name { get; set; } = string.Empty;
         #endregion Properties
 
         #region Constructor
+        protected Link()
+        {
+        }
+
         public Link(SQLiteDataReader reader)
         {
             ParentId = (int)(long)reader["parent_id"];

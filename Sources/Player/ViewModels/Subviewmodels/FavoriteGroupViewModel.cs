@@ -14,7 +14,7 @@ namespace AlphaCodex.ViewModels
     {
         #region Fields
         private FavoriteGroup _favoriteGroup;
-        private ObservableCollection<LinkViewModel> _favorites = new ObservableCollection<LinkViewModel>();
+        private ObservableCollection<FavoriteViewModel> _favorites = new ObservableCollection<FavoriteViewModel>();
         private bool _isNameChanged = false;
         #endregion Fields
         #region Properties
@@ -65,7 +65,7 @@ namespace AlphaCodex.ViewModels
             }
         }
 
-        public ObservableCollection<LinkViewModel> Favorites
+        public ObservableCollection<FavoriteViewModel> Favorites
         {
             get { return _favorites; }
             set
@@ -106,6 +106,24 @@ namespace AlphaCodex.ViewModels
             MessageBox.Show("Name changed", oldName + " ➞ " + Name, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        RelayCommand _newCommand;
+        public ICommand NewCommand
+        {
+            get
+            {
+                if (_newCommand == null)
+                {
+                    _newCommand = new RelayCommand(param => New());
+                }
+                return _newCommand;
+            }
+        }
+
+        private void New()
+        {
+            OnActionTaken("new");
+        }
+
         RelayCommand _deleteCommand;
         public ICommand DeleteCommand
         {
@@ -120,14 +138,27 @@ namespace AlphaCodex.ViewModels
         }
         private void Delete()
         {
-            if (MessageBox.Show("Do you really want to delete this group ?\nYou will not be able to recover it", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
-            {
-
-            }
-            else
+            if (MessageBox.Show("Do you really want to delete this group ?\nYou will not be able to recover it", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 OnActionTaken("delete");
+            } else return;
+        }
+
+        RelayCommand _removeCommand;
+        public ICommand RemoveCommand
+        {
+            get
+            {
+                if (_removeCommand == null)
+                {
+                    _removeCommand = new RelayCommand(param => Remove());
+                }
+                return _removeCommand;
             }
+        }
+        private void Remove()
+        {
+            OnActionTaken("remove");
         }
 
         RelayCommand _duplicateCommand;
@@ -149,6 +180,16 @@ namespace AlphaCodex.ViewModels
         }
         #endregion
         #region Constructor
+        public FavoriteGroupViewModel(string name)
+        {
+            _favoriteGroup = new FavoriteGroup(name);
+             if (_favoriteGroup.Save())
+            {
+                _favorites = new ObservableCollection<FavoriteViewModel>();
+                DisplayName = Name;
+            }
+        }
+
         public FavoriteGroupViewModel(FavoriteGroup favoriteGroup)
         {
             _favoriteGroup = favoriteGroup;
@@ -158,7 +199,7 @@ namespace AlphaCodex.ViewModels
                 base.DisplayName = favoriteGroup.Name;
             if (favoriteGroup.Favorites.Any())
             {
-                _favorites = new ObservableCollection<LinkViewModel>(favoriteGroup.Favorites.Select(favorite => new LinkViewModel(favorite)));
+                _favorites = new ObservableCollection<FavoriteViewModel>(favoriteGroup.Favorites.Select(favorite => new FavoriteViewModel(favorite)));
             }
         }
 
@@ -170,7 +211,6 @@ namespace AlphaCodex.ViewModels
             base.DisplayName = Name;
         }
         #endregion Constructor
-
         #region Methods
         protected virtual void OnActionTaken(string action)
         {
@@ -180,8 +220,29 @@ namespace AlphaCodex.ViewModels
         internal void AddFavorite(Favorite favorite)
         {
             _favoriteGroup.Add(favorite);
-            _favorites.Add(new LinkViewModel(favorite));
+            _favorites.Add(new FavoriteViewModel(favorite));
         }
+
+        internal void RemoveFavorites()
+        {
+            var favoritesForLoop = _favorites.ToList();
+            foreach (FavoriteViewModel favoriteVM in favoritesForLoop)
+            {
+                if (favoriteVM.IsSelected)
+                {
+                    if (favoriteVM.Favorite.Delete())
+                    {
+                        _favorites.Remove(favoriteVM);
+                    }
+                }
+            }
+        }
+
+        internal void DeleteGroup()
+        {
+            _favoriteGroup.Delete();
+        }
+
         #endregion
     }
 }

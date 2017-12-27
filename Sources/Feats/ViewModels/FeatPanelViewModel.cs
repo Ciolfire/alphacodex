@@ -372,7 +372,7 @@ namespace AlphaCodex.ViewModels
 
         private void SearchUpdated(string value)
         {
-            if (String.IsNullOrWhiteSpace(value)) return;
+            if (value == null) return;
             bool contains;
             foreach (FeatViewModel feat in Feats)
             {
@@ -444,7 +444,6 @@ namespace AlphaCodex.ViewModels
                 case "IsDisabled":
                     foreach (FeatViewModel feat in Feats)
                     {
-                        // NEED TO TAKE THE EXTRA TYPE INTO ACCOUNT
                         if (feat.Type.Id == type.Id)
                         {
                             feat.TypeIsActivated = !type.IsDisabled;

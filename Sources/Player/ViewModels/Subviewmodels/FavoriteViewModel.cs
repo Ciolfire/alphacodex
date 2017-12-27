@@ -1,33 +1,50 @@
-﻿using System;
+﻿using AlphaCodex.Data;
+using AlphaCodex.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-//namespace AlphaCodex.ViewModels
-//{
-//    class FavoriteViewModel : ViewModelBase
-//    {
-//        #region Fields
-//        private Favorite _favorite;
-//        #endregion Fields
-//        #region Properties
-//        public string Type
-//        {
-//            get { return _favorite.Type; }
-//            set
-//            {
-//                if (value == _favorite.Type) return;
-//                _favorite.Type = value;
-//                base.OnPropertyChanged("Type");
-//            }
-//        }
-//        #endregion Properties
-//        #region Constructor
-//        public FavoriteViewModel(Favorite favorite)
-//        {
-//            _favorite = favorite;
-//        }
-//        #endregion Constructor
-//    }
-//}
+namespace AlphaCodex.ViewModels
+{
+    public class FavoriteViewModel : LinkViewModel
+    {
+        #region Fields
+        //private new Favorite _link;
+        #endregion
+        #region Properties
+        public bool IsSelected { get; set; }
+        public Favorite Favorite { 
+            get { return _link as Favorite; }
+            set
+            {
+                if (value == _link) return;
+                _link = value;
+                base.OnPropertyChanged("Favorite");
+            }
+        }
+        #endregion Properties
+
+        #region Commands
+        public override void Navigate()
+        {
+            base.OnLinkClicked(Favorite);
+        }
+        #endregion
+
+        #region Constructor
+        public FavoriteViewModel(Favorite favorite)
+        {
+            _link = favorite ?? throw new ArgumentNullException("Favorite");
+            if (string.IsNullOrWhiteSpace(favorite.Name))
+                DisplayName = Favorite.ParentId.ToString();
+            else
+                DisplayName = Favorite.Name;
+            IsSelected = false;
+        }
+        #endregion Constructor
+        #region Methods
+        #endregion
+    }
+}

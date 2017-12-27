@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace AlphaCodex.ViewModels
@@ -12,7 +13,7 @@ namespace AlphaCodex.ViewModels
     public class LinkViewModel : ViewModelBase
     {
         #region Fields
-        private Link _link;
+        protected Link _link;
         #endregion
 
         #region Properties
@@ -47,6 +48,7 @@ namespace AlphaCodex.ViewModels
                 base.OnPropertyChanged("LinkId");
             }
         }
+
         #endregion
 
         #region Commands
@@ -63,13 +65,17 @@ namespace AlphaCodex.ViewModels
             }
         }
 
-        public void Navigate()
+        public virtual void Navigate()
         {
             OnLinkClicked(_link);
         }
         #endregion
 
         #region Constructor
+        public LinkViewModel()
+        {
+        }
+
         public LinkViewModel(Link link)
         {
             _link = link ?? throw new ArgumentNullException("Link");
@@ -82,7 +88,7 @@ namespace AlphaCodex.ViewModels
             {
                 throw new ArgumentNullException("Link");
             }
-            _link = new Link(favorite.Name, favorite.Id, favorite.Type);
+            _link = new Link(favorite.Name, favorite.ParentId, favorite.Type);
             if (string.IsNullOrWhiteSpace(favorite.Name))
                 DisplayName = _link.ParentId.ToString();
             else

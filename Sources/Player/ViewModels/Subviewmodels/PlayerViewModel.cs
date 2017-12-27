@@ -1,9 +1,12 @@
-﻿using AlphaCodex.Models;
+﻿using AlphaCodex.Data;
+using AlphaCodex.Models;
+using AlphaCodex.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace AlphaCodex.ViewModels
 {
@@ -23,7 +26,28 @@ namespace AlphaCodex.ViewModels
                 base.OnPropertyChanged("Name");
             }
         }
-        #endregion Properties
+        #endregion
+        #region Methods
+        RelayCommand _saveNameCommand;
+        public ICommand SaveNameCommand
+        {
+            get
+            {
+                if (_saveNameCommand == null)
+                {
+                    _saveNameCommand = new RelayCommand(param => SaveName(param));
+                }
+                return _saveNameCommand;
+            }
+        }
+        private void SaveName(object param)
+        {
+            string text = param as string;
+            DatabaseAccess da = new DatabaseAccess();
+            if (!da.SavePlayer(text)) return;
+            Name = text;
+        }
+        #endregion
         #region Constructor
         public PlayerViewModel(Player player)
         {

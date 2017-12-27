@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="AlphaCodex.Views.FavoriteGroup"
+﻿<UserControl x:Class="AlphaCodex.Views.FavoriteGroupView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,8 +7,12 @@
              xmlns:tools="clr-namespace:AlphaCodex.Tools"
              mc:Ignorable="d">
     <StackPanel VerticalAlignment="Top" Width="220" Margin="5" Background="#FF230F0F" HorizontalAlignment="Left">
-        <StackPanel Height="200" MaxHeight="200">
-            <StackPanel Visibility="{Binding Path=Name, Converter={tools:NullToVisibilityConverter}}" Orientation="Horizontal">
+        <Grid Height="200">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Visibility="{Binding Path=Name, Converter={tools:NullToVisibilityConverter}}" Orientation="Horizontal">
                 <Button Command="{Binding Path=ChangeGroupNameCommand}"
                             Visibility="{Binding Path=IsNameChanged, Converter={tools:BooleanToVisibilityConverter}, ConverterParameter=hidden}"
                         Width="20" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#FFE20F0F">
@@ -21,9 +25,8 @@
                            Foreground="{DynamicResource BackgroundColor}" Background="{x:Null}" SelectionBrush="{DynamicResource BorderColor}" BorderBrush="{x:Null}" CaretBrush="{DynamicResource BackgroundColor}"/>
                 <Button Command="{Binding Path=DeleteCommand}" Cursor="Hand" Width="20" Foreground="{DynamicResource BorderColor}" Background="{x:Null}" BorderBrush="{x:Null}">✖</Button>
             </StackPanel>
-            <ListBox ItemsSource="{Binding Path=Favorites}"
+            <ListBox Grid.Row="1" ItemsSource="{Binding Path=Favorites}"
                      Style="{DynamicResource ListBoxStyleFeats}"
-                     MinHeight="179" MaxHeight="200"
                      SelectionMode="Multiple"
                      ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                      Background="{DynamicResource BackgroundColor2}" BorderBrush="Black">
@@ -32,11 +35,17 @@
                         <local:FavoriteView/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="IsSelected" Value="{Binding Mode=TwoWay, Path=IsSelected}"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
             </ListBox>
-        </StackPanel>
+        </Grid>
         <StackPanel Orientation="Horizontal">
-            <Button Background="#FF033504" Foreground="White" Command="{Binding Path=DuplicateCommand}">Duplicate</Button>
-            <Button Visibility="{Binding Path=Name, Converter={tools:NullToVisibilityConverter}, ConverterParameter=inverted}" Background="#FF033504" Foreground="White" Command="{Binding Path=DuplicateCommand}">Create a New Group</Button>
+            <Button Width="110" Grid.Row="0"  IsEnabled="True" Background="#FF350303" Foreground="White" Command="{Binding Path=RemoveCommand}">Remove selection</Button>
+            <Button Width="110" Grid.Row="1" Visibility="{Binding Path=Name, Converter={tools:NullToVisibilityConverter}, ConverterParameter=inverted}" Background="#FF033504" Foreground="White" Command="{Binding Path=NewCommand}" Cursor="Hand">Create Group</Button>
+            <!--<Button Visibility="Collapsed" Background="#FF033504" Foreground="White" Command="{Binding Path=DuplicateCommand}">Duplicate</Button>-->
         </StackPanel>
     </StackPanel>
 </UserControl>
