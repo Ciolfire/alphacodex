@@ -8,4 +8,3 @@
 0.5.0	-	Spells Implementation
 1.0.0	-	Refactorisation
 1.1.0	-	Favorites
-1.1.1	-	Spells
